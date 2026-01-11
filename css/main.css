@@ -2,36 +2,6 @@
   background-color: #f5f2d5;
 }
 
-/* Newspaper styling */
-.newspaper-columns {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-  column-rule: 1px solid #ccc;
-}
-
-.newspaper-column {
-  break-inside: avoid;
-}
-
-@media screen and (min-width: 60em) {
-  .newspaper-columns {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-.newspaper-title {
-  font-family: 'Old English Text MT', 'Blackletter', serif;
-}
-
-.newspaper-dropcap::first-letter {
-  font-size: 3.5em;
-  font-weight: bold;
-  line-height: 1;
-  float: left;
-  margin-right: 0.1em;
-}
-
 .projects-img {
   -webkit-filter: grayscale(100%);
   filter: grayscale(100%);

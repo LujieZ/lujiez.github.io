@@ -1,3 +1,5 @@
+---
+---
 <!DOCTYPE html>
 <html>
   <head>
@@ -12,20 +14,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
   </head>
   <body class="background-yellow">
-    <header id="header">
-      <div class="mw9 tc pv2 avenir center">
-        <div class="f7 tracked ttu mb2">Seattle, Washington • Friday, January 10, 2026 • Vol. 2 • Est. 1999</div>
-        <h1 class="mt0 mb1 baskerville fw9 f-headline newspaper-title" style="letter-spacing: 0.05em; border-top: 4px double black; border-bottom: 4px double black; padding: 10px 0;">THE LUJIE CHRONICLE</h1>
-        <h2 class="mt2 mb0 f7 fw3 ttu tracked" id="name"></h2>
-        <nav class="bt bb tc mw7 center mt2 baskerville b--black">
-          <a class="f6 f5-l link bg-animate near-black hover-bg-black hover-white dib pa2 ph4-l" href="/">Home</a>
-           <a class="f6 f5-l link bg-animate near-black hover-bg-black hover-white dib pa2 ph4-l" href="https://www.marbury.ai/">Marbury</a>
-          <a class="f6 f5-l link bg-animate near-black hover-bg-black hover-white dib pa2 ph4-l" href="/projects">Projects</a>
-          <a class="f6 f5-l link bg-animate near-black hover-bg-black hover-white dib pa2 ph4-l" href="/cv">Resume</a>
-          <a class="f6 f5-l link bg-animate near-black hover-bg-black hover-white dib pa2 ph4-l" href="/about">Contact</a>
-        </nav>
-      </div>
-    </header>
+    {% include header.html %}
 
     <h3 class="pb3 pt2 tc f2 athelas animate__animated animate__fadeIn black-80">PROJECTS</h1>
     <section class="mw7 center baskerville pb4">
@@ -142,26 +131,6 @@
         Two Puzzles
       </a>
     </section>
-    <footer class="pv4 ph3 ph5-ns tc">
-      <a class="link dim gray dib h2 w2 br-100 mr3" href="https://www.facebook.com/lujie.sue.zhao" title="Facebook">
-        <img src="../images/facebook-icon.png" viewBox="0 0 32 32" class="db" alt="facebook-icon">
-        </img>
-      </a>
-  		<a class="link dim gray dib h2 w2 br-100 mr3" href="https://github.com/LujieZ" title="GitHub">
-        <img src="../images/github-icon.png" viewBox="0 0 32 32" class="db" alt="github-icon">
-        </img>
-  		</a>
-  		<a class="link dim gray dib h2 w2 br-100 mr3" href="https://www.linkedin.com/in/lujiez/" title="LinkedIn">
-        <img src="../images/linkedin-icon.png" viewBox="0 0 32 32" class="db" alt="linkedin-icon">
-        </img>
-  		</a>
-      <p class="f7 black-70 mt4 tc">
-        Copyright © _LUJIE_ 2022 </br></br>
-        Inspired by
-        <a href="http://www.dollardreadful.com/" class="link underline-hover black-70">
-          The Dollar Dreadful Family Library
-        </a>
-      </p>
-  	</footer>
+    {% include footer.html %}
   </body>
 </html>

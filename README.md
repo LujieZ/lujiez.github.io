@@ -1,6 +1,6 @@
-# Lujie's Github Page
+# Lujie's GitHub Page
 
-This is the Github portfolio page created by Lujie.
+This is the Github portfolio page created by Sue Zhao.
 
 You can access it [here](https://lujiez.github.io/).
 

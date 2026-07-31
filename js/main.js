@@ -48,8 +48,9 @@ function draw() {
 }
 
 function typerEffect() {
-  if (i < quote.length) {
-    document.getElementById("name").innerHTML += quote.charAt(i);
+  const nameElement = document.getElementById("name");
+  if (nameElement && i < quote.length) {
+    nameElement.innerHTML += quote.charAt(i);
     i++;
     setTimeout(typerEffect, speed*100);
   }

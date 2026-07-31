@@ -1,0 +1,82 @@
+---
+---
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.sound.min.js"></script>
+    <script src="https://unpkg.com/mappa-mundi/dist/mappa.min.js" type="text/javascript"></script>
+    <script src="/js/main.js"></script>
+    <title>Contact - _LUJIE_</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+      .contact-card {
+        background: rgba(255, 255, 255, 0.28);
+        border: 1px solid #111;
+        box-shadow: 6px 6px 0 #111;
+      }
+
+      .contact-action {
+        background: #111;
+        border: 2px solid #111;
+        color: #f5f2d5;
+        transition: background-color 150ms ease, color 150ms ease, transform 150ms ease;
+      }
+
+      .contact-action:hover,
+      .contact-action:focus {
+        background: #f5f2d5;
+        color: #111;
+        transform: translate(-2px, -2px);
+      }
+    </style>
+  </head>
+  <body class="background-yellow">
+    {% include header.html %}
+
+    <main class="ph4 baskerville mw8 center">
+      <h1 class="pb4 pt3 tc f3 athelas animate__animated animate__fadeIn black-80">Contact</h1>
+      <div class="flex flex-wrap nl3 nr3">
+        <section class="w-100 w-50-ns ph3 mb5">
+          <div class="contact-card pa4 h-100">
+            <p class="f7 tracked-mega ttu mt0 mb3">Write</p>
+            <h3 class="f2 fw7 lh-title mt0 mb3">Send an email</h3>
+            <p class="f5 lh-copy mb4">
+              Questions, collaboration opportunities, or just saying hello are always welcome.
+            </p>
+            <a class="contact-action dib link fw7 tracked ttu pa3 ph4" href="mailto:lujie.sue.zhao@gmail.com">
+              Email Sue →
+            </a>
+            <p class="f6 mt3 mb0">
+              <a href="mailto:lujie.sue.zhao@gmail.com" class="link underline-hover black-80">lujie.sue.zhao@gmail.com</a>
+            </p>
+          </div>
+        </section>
+
+        <section class="w-100 w-50-ns ph3 mb5">
+          <div class="contact-card pa4 h-100">
+            <p class="f7 tracked-mega ttu mt0 mb3">Meet</p>
+            <h3 class="f2 fw7 lh-title mt0 mb3">Book a meeting</h3>
+            <p class="f5 lh-copy mb4">
+              Choose an available time. Google Calendar will send the confirmation and meeting details.
+            </p>
+            <a
+              class="contact-action dib link fw7 tracked ttu pa3 ph4"
+              href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ1E74cS1dYts65dGf36zcR9zJVsCH4cS3JQwGqGuTL-9v2ApRGVB5h3V4_Ity4FB9N7J52GUiph"
+              rel="noopener noreferrer"
+            >
+              View available times →
+            </a>
+            <p class="f7 black-60 mt3 mb0">Scheduling is securely handled by Google Calendar.</p>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    {% include footer.html %}
+  </body>
+</html>

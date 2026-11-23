@@ -2,3 +2,9 @@
 title: _LUJIE_
 email: lujie.sue.zhao@gmail.com
 github_username: LujieZ
+exclude:
+  - CONTENT.md
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor

@@ -78,7 +78,7 @@ Read the story →
 ## 5. Outside the Office
 
 **Headline:** A little more about me
-> I moved from China to the U.S. for high school when I was sixteen, then went to NYU as the first in my family to go to college. Outside work I [VERIFY: 1–2 real things you like doing].
+> I moved from China to the U.S. for high school when I was sixteen, then went to NYU as the first in my family to go to college. Outside work I paint and work out.
 >
 > At Google I've mentored engineers, helped an intern convert to full-time, and organized a 500-person event as a Women@ ambassador.
 

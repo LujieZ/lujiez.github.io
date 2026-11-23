@@ -21,9 +21,9 @@
 | Page title | The Lujie Chronicle · Sue Zhao |
 | Meta description | Sue Zhao is a software engineer on Google Cloud Security and co-founder and CTO of Marbury AI. |
 | Nav | Front Page · Work · Archive · About |
-| Colophon | Made in Seattle. Corrections and hellos: [email]. |
+| Colophon | Made in Seattle. Corrections and hellos: lujie.sue.zhao@gmail.com. |
 
-> **[VERIFY] Email:** the new résumé says `lujiez.sue.zhao@gmail.com`, but the site uses `lujie.sue.zhao@gmail.com`. Which one is right?
+> Email confirmed: `lujie.sue.zhao@gmail.com`.
 
 ---
 
@@ -96,10 +96,10 @@ Read the story →
 > I studied Computer Science at NYU (B.S. 2021, magna cum laude) with minors in math and finance.
 
 **Contact:**
-- Email: [VERIFY email]
+- Email: lujie.sue.zhao@gmail.com
 - Book a time: existing Google Calendar link
 - GitHub · LinkedIn · X
-- Résumé (PDF): replaced with the Nov 2026 version
+- Résumé (PDF): Nov 2026 version (done on branch)
 
 ---
 

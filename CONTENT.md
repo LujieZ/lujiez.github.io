@@ -136,17 +136,6 @@ Read the story →
 **Constraint**
 > Lawyers have to be able to explain every decision about a document. So anything the AI does needs a record that a person can review.
 
-**Diagram (illustrative)**
-> Upload → Docling + FastAPI pipeline → OpenSearch (keyword + semantic) → review agent → audit log → export
-
-**Decisions** [VERIFY: replace with the real ones]
-1. **Hybrid search.** Lawyers search by exact terms; meaning-based search finds what they didn't think to type. We run both.
-2. **An audit trail on every AI action.** Each tag or flag is stored with the reason for it.
-3. **Docling for parsing.** [VERIFY: why you picked it]
-
-**Outcome**
-> [VERIFY: anything public you can say, such as launch date or customer types. Otherwise this section is cut.]
-
 **Next:** Service account keys →
 
 ---

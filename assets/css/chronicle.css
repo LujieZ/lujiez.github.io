@@ -427,6 +427,10 @@ figcaption { font-size: 13px; line-height: 1.4; color: var(--muted); }
 
 /* ---------- Colophon ---------- */
 .colophon { margin-top: 24px; }
+/* the footer's divider echoes the masthead tagline: hand-drawn lines meeting at an oxblood diamond */
+.colophon-rule { display: flex; align-items: center; gap: 14px; }
+.colophon-rule > svg:first-child, .colophon-rule > svg:last-child { flex: 1 1 0; min-width: 0; width: auto; }
+.colophon-rule > svg:last-child { transform: scaleX(-1); }
 .colophon-main { padding-top: 32px; padding-bottom: 40px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; }
 .colophon-brand { display: flex; flex-direction: column; gap: 8px; }
 .colophon-name { font-family: var(--mast); font-size: 28px; letter-spacing: 0.02em; }

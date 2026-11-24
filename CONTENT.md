@@ -108,7 +108,7 @@ Read the story →
 | Year | Title | One line | Link |
 |---|---|---|---|
 | 2024– | Marbury AI | Co-founder & CTO. Built the platform from the first commit. | case study, marbury.ai |
-| 2023–24 | Saturday Inc | Lead engineer (part-time). Coach portal for orders, seating, and payments. | none |
+| 2023–24 | Saturday Inc | Lead engineer (part-time). Coach portal for orders, seating, and payments. | saturday.fit |
 | 2022– | Google Cloud Security | Identity and access for AI agents and the software that runs on Google Cloud. | none |
 | 2021 | Disable/enable service account keys | Internship project. Launched to every Google Cloud customer. | case study, GCP docs |
 | 2020–21 | NYU course website | Led the rebuild of the Intro to Engineering site, 1,000+ daily users. | eg.poly.edu |

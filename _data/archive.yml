@@ -21,6 +21,8 @@
   line: Lead engineer (part-time). Coach portal for orders, seating, and payments.
   icon: bag
   strip: true
+  links:
+    - { label: "saturday.fit ↗", url: "https://saturday.fit/" }
 - year: "2022–"
   kind: Role
   group: Work

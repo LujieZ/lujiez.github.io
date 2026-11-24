@@ -14,6 +14,14 @@ elsewhere:
   - { label: GitHub, url: "https://github.com/LujieZ" }
   - { label: LinkedIn, url: "https://www.linkedin.com/in/lujiez/" }
   - { label: X, url: "https://x.com/zhaosuesue" }
+collections:
+  work:
+    output: true
+defaults:
+  - scope: { path: "", type: work }
+    values: { layout: feature, folio: Section B }
+kramdown:
+  auto_ids: false
 exclude:
   - CONTENT.md
   - README.md

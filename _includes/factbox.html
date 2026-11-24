@@ -1,0 +1,11 @@
+<aside class="factbox" aria-label="Fact box">
+  <p class="kicker">Fact box</p>
+  <dl>
+    {%- for f in page.facts %}
+    <div><dt>{{ f[0] }}</dt><dd>{{ f[1] }}</dd></div>
+    {%- endfor %}
+  </dl>
+  {%- if page.fact_link %}
+  <a class="inklink" href="{{ page.fact_link.url }}">{{ page.fact_link.label }}</a>
+  {%- endif %}
+</aside>

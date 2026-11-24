@@ -1,0 +1,7 @@
+<article class="feature reveal">
+  <div class="feature-art" aria-hidden="true">{% include art.html name=include.story.art %}</div>
+  <div class="feature-meta"><span class="kicker">{{ include.story.kicker }}</span><span class="meta">{{ include.story.card_meta }}</span></div>
+  <h2><a href="{{ include.story.url | relative_url }}">{{ include.story.title }}</a></h2>
+  <p class="dek">{{ include.story.card_dek }}</p>
+  <a class="inklink mlink" href="{{ include.story.url | relative_url }}" aria-hidden="true" tabindex="-1">{% include ink/manicule.svg %}Read the story</a>
+</article>

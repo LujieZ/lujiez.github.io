@@ -1,5 +1,6 @@
 # Everything on file, newest first.
 # group: Work | Projects | Milestones  (the Archive page filters on it)
+# also: true lists the entry under "Also on file" on the Work page.
 # strip: true puts the entry on the front page's archive strip.
 # icon: names a file in _includes/ink/icon-*.svg
 - year: "2024–"
@@ -16,6 +17,7 @@
   kind: Role
   group: Work
   title: Saturday Inc
+  also: true
   line: Lead engineer (part-time). Coach portal for orders, seating, and payments.
   icon: bag
   strip: true
@@ -40,6 +42,7 @@
   kind: Web
   group: Projects
   title: NYU course website
+  also: true
   line: Led the rebuild of the Intro to Engineering site, 1,000+ daily users.
   icon: globe
   strip: true
@@ -55,6 +58,7 @@
   kind: Internship
   group: Work
   title: Config push timelines
+  also: true
   line: STEP internship. A timeline of configuration changes, used by 2,000+ people a day.
   icon: clock
   strip: true
@@ -64,14 +68,16 @@
   kind: Library
   group: Projects
   title: VEX library
+  also: true
   line: Code for controlling a VEX competition robot.
-  icon: robot
+  icon: gear
   links:
     - { label: "GitHub ↗", url: "https://github.com/LujieZ" }
 - year: "2019"
   kind: Research
   group: Projects
   title: Mobile robot 3D printing
+  also: true
   line: AI4CE Lab. Small robots that worked together to print a floor plan.
   icon: robot
   strip: true
@@ -94,6 +100,7 @@
   kind: Coursework
   group: Projects
   title: Coursework
+  also: true
   line: Sudoku, BlueV, job-change prediction, two AI puzzles.
   icon: pencil
   links:

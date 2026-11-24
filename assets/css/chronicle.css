@@ -426,7 +426,7 @@ figcaption { font-size: 13px; line-height: 1.4; color: var(--muted); }
 .notfound { padding: 36px 0 72px; display: flex; flex-wrap: wrap; gap: 16px 40px; }
 
 /* ---------- Colophon ---------- */
-.colophon { border-top: 3px double var(--ink); }
+.colophon { margin-top: 24px; }
 .colophon-main { padding-top: 32px; padding-bottom: 40px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; }
 .colophon-brand { display: flex; flex-direction: column; gap: 8px; }
 .colophon-name { font-family: var(--mast); font-size: 28px; letter-spacing: 0.02em; }

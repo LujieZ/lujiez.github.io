@@ -1,46 +1,28 @@
 ---
+layout: feature
+title: Mobile robot 3D printing
+description: Research at NYU's AI4CE Lab in 2019 on robots that drive around while they print, with no printer frame to limit the size.
+folio: From the archive
+kicker: From the archive · NYU
+meta: 2019 · AI4CE Lab research
+dek: Robots that drive around while they print, so the size of the print isn't limited by the printer.
+read: 1 min read
+facts:
+  - [When, "2019"]
+  - [Where, "AI4CE Lab, NYU"]
+  - [Result, "A floor plan printed at 3 m by 3 m"]
+next_story:
+  label: More from the archive
+  url: /projects/barchart
+  kicker: Google, 2020
+  title: Config push timelines
 ---
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1， shrink-to-fit=no">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.sound.min.js"></script>
-    <script src="https://unpkg.com/mappa-mundi/dist/mappa.min.js" type="text/javascript"></script>
-    <script src="../js/main.js"></script>
-    <title>_LUJIE_</title>
-    <link rel="stylesheet" href="../css/main.css"/>
-  	<link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-  </head>
-  <body class="background-yellow">
-    {% include header.html %}
-
-    <div class="black-80 ph4 dt mw7 center">
-      <h1 class="f2 f2-ns fw3 tc baskerville animate__animated animate__fadeIn">Large Scale Mobile Robotic 3D Printing Project</h1>
-      <div class="tc">
-        <img src="../images/poster.jpg" class="w-100 f5 measure" alt="poster">
-      </div>
-      <p class="f5 f5-ns baskerville lh-copy center bb b--black-10 pb4">
-        While useful, traditional gantry-based 3D printers have a few significant
-        disadvantages. The printing scale is strictly confined to the printer platform,
-        and the printing process has relatively low efficiency. Using mobile robots for
-        3D printing can be one potential solution. However, highly accurate localization
-        of these robots is the key challenge to this new possibility.
-      </br></br>
-        Accurate 3D printing requires millimeter level accuracy of the printhead,
-        but traditional cost-effective localization methods are at most of
-        centimeterlevel accuracy. Our research will use deep neural networks to
-        fuse laser sensors and cameras, leading to a new method of localization
-        suitable for mobile robotic 3D printing. Such a method will also be able
-        to incorporate other sensors such as odometry from IMU/wheel-encoders, to
-        further increase the accuracy and efficiency of localization.
-      </br></br>
-        We worked on both the hardware and software platform for testing and
-        improving the localization accuracy and was able to demonstrate a
-        large-scale 2D printing (at least 3m by 3m size) by the end of the project.
-      </p>
-    </div>
-    {% include footer.html %}
-  </body>
-</html>
+<h2>The problem</h2>
+<p><span class="dropcap" aria-hidden="true">A</span><span class="sr-only">A</span> normal 3D printer can only make things smaller than itself, and it's slow. Robots that move around while they print don't have that limit. The hard part is that they need to know exactly where they are, down to about a millimeter, and cheap ways of tracking a robot are only good to about a centimeter.</p>
+<figure class="story-media">
+  <img src="{{ '/assets/img/robot-printing.jpg' | relative_url }}" alt="Research poster for the mobile robot 3D printing project" width="1000" height="667" loading="lazy">
+  <figcaption>Our research poster.</figcaption>
+</figure>
+<h2>What we did</h2>
+<p>The lab's research combined cameras and laser sensors to help each robot work out its position more precisely. I worked on the robots and the software we used to test how accurate they were.</p>
+<p>By the end of the project, the robots printed a floor plan at least 3 meters by 3 meters.</p>

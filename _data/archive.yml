@@ -74,7 +74,7 @@
   line: Code for controlling a VEX competition robot.
   icon: gear
   links:
-    - { label: "GitHub ↗", url: "https://github.com/LujieZ" }
+    - { label: "GitHub ↗", url: "https://github.com/tg1625/Vex-Library" }
 - year: "2019"
   kind: Research
   group: Projects
@@ -106,4 +106,7 @@
   line: Sudoku, BlueV, job-change prediction, two AI puzzles.
   icon: pencil
   links:
-    - { label: "GitHub ↗", url: "https://github.com/LujieZ" }
+    - { label: "Sudoku ↗", url: "https://github.com/LujieZ/cs1114-sudoku" }
+    - { label: "BlueV ↗", url: "https://docs.google.com/presentation/d/1ijQpYIHXFUvPpG1JZRgfgI-wbjIKB8XsHZ3AicccLm8/edit?usp=sharing" }
+    - { label: "Job-change prediction ↗", url: "https://github.com/LujieZ/cs4563-machine-learning" }
+    - { label: "AI puzzles ↗", url: "https://github.com/LujieZ/cs4613-artificial-intelligence" }

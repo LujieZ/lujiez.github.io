@@ -272,7 +272,7 @@ figcaption { font-size: 13px; line-height: 1.4; color: var(--muted); }
 .smallcard-icon svg { transition: transform 300ms var(--spring); }
 .smallcard-text { display: contents; }
 .smallcard-text .meta { grid-column: 2; grid-row: 1; justify-self: end; }
-.smallcard-title, .smallcard-line, .smallcard .inklink { grid-column: 1 / -1; justify-self: start; }
+.smallcard-title, .smallcard-line, .smallcard .link-row { grid-column: 1 / -1; justify-self: start; }
 .smallcard-title { font-weight: 600; font-size: 19px; line-height: 1.3; }
 .smallcard-line { font-size: 16px; line-height: 1.5; color: var(--muted); }
 .smallcard:hover { transform: translateY(-4px); }
@@ -344,6 +344,64 @@ figcaption { font-size: 13px; line-height: 1.4; color: var(--muted); }
 .nextcard-art svg { width: 180px; height: auto; transition: transform 240ms ease; }
 .nextcard:hover { color: var(--oxide); }
 .nextcard:hover .nextcard-art svg { transform: translateX(4px); }
+
+/* ---------- Archive ---------- */
+.ledger { padding: 28px 0 56px; display: flex; flex-direction: column; gap: 18px; }
+.ledger-tools { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; }
+.ledger-tools[hidden] { display: none; }
+.chips { display: flex; flex-wrap: wrap; gap: 10px; }
+.chip {
+  min-height: 44px; padding: 8px 18px; border-radius: 999px; border: 1px solid var(--ink);
+  background: transparent; color: var(--ink); cursor: pointer;
+  font-family: var(--head); font-size: 18px; display: inline-flex; align-items: center; gap: 10px;
+  transition: background-color 160ms ease, color 160ms ease;
+}
+.chip[aria-pressed="true"], .chip:hover { background: var(--ink); color: var(--paper); }
+.chip-count { font-family: var(--mono); font-size: 11px; opacity: 0.75; }
+.ledger-list { list-style: none; padding: 0; border-top: 3px double var(--ink); }
+.ledger-row {
+  display: grid; grid-template-columns: 120px 40px 130px minmax(0, 1fr) 230px; align-items: start; gap: 20px;
+  padding: 20px 0; border-bottom: 1px solid var(--ink); transition: background-color 200ms ease;
+}
+.ledger-row[hidden] { display: none; }
+.ledger-row:hover { background: rgba(142, 47, 28, 0.05); }
+.ledger-row svg { width: 32px; height: 32px; transition: transform 300ms var(--spring); }
+.ledger-row:hover svg { transform: rotate(-10deg) scale(1.08); }
+.ledger-year { font-family: var(--head); font-size: 34px; line-height: 1; }
+.ledger-icon { color: var(--ink); }
+.ledger-kind { padding-top: 8px; }
+.ledger-text { display: flex; flex-direction: column; gap: 4px; }
+.ledger-title { font-weight: 600; font-size: 20px; line-height: 1.3; }
+.ledger-line { font-size: 17px; line-height: 1.5; color: var(--muted); }
+.ledger-links { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; padding-top: 4px; }
+
+/* ---------- About ---------- */
+.bio { padding: 40px 0 48px; display: flex; flex-wrap: wrap; gap: 40px 64px; }
+.bio-photo { flex: 0 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 10px; }
+.bio-text { flex: 1 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 20px; }
+.bio-text p { max-width: 62ch; }
+.bio-aside { display: flex; align-items: center; gap: 18px; padding-top: 6px; }
+.bio-aside .dek { font-size: 21px; }
+.letters { border-top: 3px double var(--ink); padding: 36px 0 56px; display: flex; flex-wrap: wrap; gap: 32px 64px; }
+.letters-head { flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 12px; }
+.letters-head h2 { font-family: var(--head); font-weight: 400; font-size: 40px; line-height: 1.05; }
+.letters-sub { font-size: calc(18px * var(--body-scale)); color: var(--muted); }
+.contact-list { flex: 1 1 560px; min-width: 0; list-style: none; padding: 0; border-bottom: 1px solid var(--ink); }
+.contact-list li { display: flex; align-items: center; gap: 16px; padding: 14px 0; border-top: 1px solid var(--ink); }
+.contact-list li > span:last-child { display: flex; flex-direction: column; gap: 2px; min-width: 0; font-size: 18px; overflow-wrap: anywhere; }
+.contact-list svg { color: var(--ink); }
+
+/* Plain underlined link inside running text or lists */
+.inklink-text { text-decoration: underline; text-decoration-color: currentColor; text-underline-offset: 4px; }
+.inklink-text:hover { color: var(--oxide); text-underline-offset: 6px; }
+.link-row { display: inline-flex; flex-wrap: wrap; gap: 4px 20px; }
+
+/* ---------- Project pages and the résumé ---------- */
+.story-media { margin: 8px 0; display: flex; flex-direction: column; gap: 8px; }
+.story-media img, .story-media video { display: block; width: 100%; height: auto; border: 1px solid var(--ink); background: var(--photo); }
+.resume { padding: 28px 0 56px; display: flex; flex-direction: column; gap: 18px; }
+.resume-frame { width: 100%; height: 80vh; min-height: 520px; border: 1px solid var(--ink); background: #fff; }
+.resume-frame p { padding: 24px; }
 
 /* ---------- Colophon ---------- */
 .colophon { border-top: 4px solid var(--ink); }
@@ -482,6 +540,34 @@ figcaption { font-size: 13px; line-height: 1.4; color: var(--muted); }
   .nextcard-art { order: -1; }
   .nextcard-art svg { width: 150px; }
   .nextcard-title { font-size: 28px; line-height: 1.1; }
+
+  .ledger { padding: 20px 0 36px; gap: 14px; }
+  .ledger-tools { flex-direction: column; align-items: flex-start; }
+  .chips { gap: 8px; }
+  .chip { padding: 8px 14px; font-size: 16px; }
+  .ledger-row { grid-template-columns: 36px minmax(0, 1fr); column-gap: 14px; row-gap: 4px; padding: 16px 0; }
+  .ledger-icon { grid-column: 1; grid-row: 1 / span 4; padding-top: 2px; }
+  .ledger-row svg { width: 30px; height: 30px; }
+  .ledger-year, .ledger-kind, .ledger-text, .ledger-links { grid-column: 2; }
+  .ledger-year { font-size: 22px; }
+  .ledger-kind { padding-top: 0; }
+  .ledger-title { font-size: 18px; }
+  .ledger-line { font-size: 15px; }
+  .ledger-links { flex-direction: row; flex-wrap: wrap; gap: 0 18px; padding-top: 0; }
+
+  .bio { padding: 28px 0 32px; gap: 18px; }
+  .bio-photo, .bio-text { flex-basis: 100%; }
+  .bio-photo .portrait { width: 170px; height: 210px; }
+  .bio-text { gap: 18px; }
+  .bio-aside { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .bio-aside .dek { font-size: 19px; }
+  .letters { padding: 24px 0 36px; gap: 14px; }
+  .letters-head, .contact-list { flex-basis: 100%; }
+  .letters-head h2 { font-size: 32px; }
+  .letters-sub { font-size: calc(17px * var(--body-scale)); }
+  .contact-list li { gap: 14px; padding: 12px 0; }
+  .contact-list li > span:last-child { font-size: 16px; }
+  .resume-frame { height: 70vh; min-height: 420px; }
 }
 
 /* ---------- Motion ---------- */
@@ -494,5 +580,5 @@ figcaption { font-size: 13px; line-height: 1.4; color: var(--muted); }
 @keyframes inkrise { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) {
   .caret { animation: none; }
-  a, .mlink svg, .archcard, .archcard svg, .archbtn svg, .stamp, .nav a, .smallcard, .smallcard svg, .nextcard-art svg { transition: none; }
+  a, .mlink svg, .archcard, .archcard svg, .archbtn svg, .stamp, .nav a, .smallcard, .smallcard svg, .nextcard-art svg, .chip, .ledger-row, .ledger-row svg { transition: none; }
 }

@@ -1,12 +1,18 @@
-# Lujie's GitHub Page
+# The Lujie Chronicle
 
-This is the Github portfolio page created by Sue Zhao.
+Sue Zhao's personal site, set as a small newspaper: https://lujiez.github.io/
 
-You can access it [here](https://lujiez.github.io/).
+Built with Jekyll (GitHub Pages, no plugins), one hand-written stylesheet and one small script.
 
+- `_layouts/` – `default` (masthead + colophon), `feature` (case studies and project pages), `redirect` (old addresses)
+- `_includes/` – masthead, colophon, shared pieces; `ink/` holds the hand-drawn SVG icons
+- `_data/archive.yml` – every entry on the Archive page, the front-page strip and "Also on file"
+- `_work/` – the two case studies
+- `assets/css/chronicle.css`, `assets/js/chronicle.js`
 
-Theme: Jekyll(Minimal)
+Run it locally:
 
-CSS Framework: Tachyons
-
-CSS Animation: Animate.css
+```sh
+bundle install
+bundle exec jekyll serve
+```

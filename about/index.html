@@ -1,0 +1,42 @@
+---
+layout: default
+title: About
+description: Sue Zhao (赵璐洁) is a software engineer in Seattle, working on identity for AI agents at Google Cloud and co-founder & CTO of Marbury AI.
+folio: Section D
+---
+<div class="wrap">
+  {% include page-head.html kicker="Section D · About" title="About" dek="I'm Sue Zhao (赵璐洁), a software engineer in Seattle." %}
+
+  <section class="bio" aria-label="Biography">
+    <figure class="bio-photo">
+      <div class="portrait">
+        <img src="{{ '/assets/img/headshot.jpg' | relative_url }}" alt="Portrait of Sue Zhao" width="900" height="675">
+        <div class="stamp" aria-hidden="true">{% include ink/stamp-ring.svg %}<span>EST.<br>1999<br>SEATTLE</span></div>
+      </div>
+      <figcaption>Sue Zhao (赵璐洁), author. Seattle.</figcaption>
+    </figure>
+    <div class="bio-text">
+      <p class="body-copy"><span class="dropcap" aria-hidden="true">A</span><span class="sr-only">A</span>t Google Cloud Security I work on identity: how AI agents and other software prove who they are, and what they're allowed to do. I'm also on call for some of Google Cloud's most critical systems, and I've advised teams across Google Cloud, and at Waymo, on how their software should handle identity.</p>
+      <p class="body-copy">Outside Google, I'm co-founder and CTO of <a class="inklink-text" href="https://www.marbury.ai/">Marbury AI</a>. From 2023 to 2024 I led engineering part-time at <a class="inklink-text" href="https://saturday.fit/">Saturday Inc</a>, building a coach portal for team orders, seat assignments, and subscription payments.</p>
+      <p class="body-copy">I studied Computer Science at NYU (B.S. 2021, magna cum laude) with minors in math and finance.</p>
+      <div class="bio-aside">
+        <span aria-hidden="true">{% include ink/brushbell.svg %}</span>
+        <p class="dek">I moved from China to the U.S. for high school when I was sixteen. Outside work I paint and work out.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="letters reveal" id="contact" aria-labelledby="letters-h">
+    <div class="letters-head">
+      <p class="kicker">Letters to the editor</p>
+      <h2 id="letters-h">Get in touch</h2>
+      <p class="letters-sub">Corrections and hellos are both welcome.</p>
+    </div>
+    <ul class="contact-list">
+      <li><span aria-hidden="true">{% include ink/contact-envelope.svg %}</span><span><span class="meta">Email</span><a class="inklink-text" href="mailto:{{ site.email }}">{{ site.email }}</a></span></li>
+      <li><span aria-hidden="true">{% include ink/contact-calendar.svg %}</span><span><span class="meta">Book a time</span><a class="inklink-text" href="{{ site.calendar_url }}">Pick a slot on my calendar ↗</a></span></li>
+      <li><span aria-hidden="true">{% include ink/contact-page.svg %}</span><span><span class="meta">Résumé</span><a class="inklink-text" href="{{ site.resume_url | relative_url }}">Download the PDF ({{ site.issue_date }})</a></span></li>
+      <li><span aria-hidden="true">{% include ink/contact-elsewhere.svg %}</span><span><span class="meta">Elsewhere</span><span class="link-row">{% for link in site.elsewhere %}<a class="inklink-text" href="{{ link.url }}">{{ link.label }}</a>{% endfor %}</span></span></li>
+    </ul>
+  </section>
+</div>

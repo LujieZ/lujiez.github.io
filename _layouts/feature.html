@@ -15,7 +15,7 @@ layout: default
       <div class="story-body">
         {{ parts[0] }}
       </div>
-      {% include factbox.html %}
+      {%- if page.facts %}{% include factbox.html %}{% endif %}
     </div>
 
     {%- if page.figure %}
@@ -35,11 +35,11 @@ layout: default
     {%- if page.next_story %}
     <a class="nextcard" href="{{ page.next_story.url | relative_url }}">
       <span class="nextcard-text">
-        <span class="kicker">Next story · {{ page.next_story.kicker }}</span>
+        <span class="kicker">{{ page.next_story.label | default: "Next story" }} · {{ page.next_story.kicker }}</span>
         <span class="nextcard-title">{{ page.next_story.title }}</span>
         <span class="inklink mlink">{% include ink/manicule.svg %}Read it next</span>
       </span>
-      <span class="nextcard-art" aria-hidden="true">{% include art.html name=page.next_story.art %}</span>
+      {%- if page.next_story.art %}<span class="nextcard-art" aria-hidden="true">{% include art.html name=page.next_story.art %}</span>{% endif %}
     </a>
     {%- endif %}
   </div>

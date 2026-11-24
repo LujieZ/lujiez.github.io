@@ -2,6 +2,7 @@
    - ink-dot rain behind the masthead
    - typewriter tagline
    - archive strip: drag with the mouse, arrow keys, and ← / → buttons
+   - archive page filters, and muted demo videos that play while on screen
    Everything respects prefers-reduced-motion. */
 (function () {
   'use strict';
@@ -102,5 +103,40 @@
     var next = document.querySelector('[data-strip-next]');
     if (prev) prev.addEventListener('click', function () { strip.scrollBy({ left: -520, behavior: behavior }); });
     if (next) next.addEventListener('click', function () { strip.scrollBy({ left: 520, behavior: behavior }); });
+  }
+  /* ---------- Archive filters ---------- */
+  var ledger = document.querySelector('[data-ledger]');
+  if (ledger) {
+    var tools = ledger.querySelector('[data-ledger-tools]');
+    var rows = ledger.querySelectorAll('[data-group]');
+    var count = ledger.querySelector('[data-ledger-count]');
+    var chips = ledger.querySelectorAll('[data-filter]');
+    tools.hidden = false;   /* without JS every entry shows and the buttons stay hidden */
+    var apply = function (group) {
+      var shown = 0;
+      rows.forEach(function (r) {
+        var on = group === 'All' || r.getAttribute('data-group') === group;
+        r.hidden = !on;
+        if (on) shown += 1;
+      });
+      chips.forEach(function (c) { c.setAttribute('aria-pressed', String(c.getAttribute('data-filter') === group)); });
+      count.textContent = 'Showing ' + shown + ' of ' + rows.length;
+    };
+    chips.forEach(function (c) {
+      c.addEventListener('click', function () { apply(c.getAttribute('data-filter')); });
+    });
+  }
+
+  /* ---------- Muted demo videos ---------- */
+  /* They play on their own only while on screen, and never with reduced motion. */
+  var videos = document.querySelectorAll('video[data-autoplay]');
+  if (videos.length && !still && 'IntersectionObserver' in window) {
+    var vio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { var p = e.target.play(); if (p && p.catch) p.catch(function () {}); }
+        else e.target.pause();
+      });
+    }, { threshold: 0.4 });
+    videos.forEach(function (v) { vio.observe(v); });
   }
 })();

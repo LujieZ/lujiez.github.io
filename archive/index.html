@@ -1,0 +1,39 @@
+---
+layout: default
+title: Archive
+description: Everything Sue Zhao has worked on since 2015, newest first.
+folio: Section C
+---
+<div class="wrap">
+  {% include page-head.html kicker="Section C · The Archive" title="Archive" dek="Everything I've worked on since 2015, newest first." %}
+
+  <section class="ledger" aria-label="Archive entries" data-ledger>
+    {%- assign total = site.data.archive | size %}
+    <div class="ledger-tools" hidden data-ledger-tools>
+      <div class="chips" role="group" aria-label="Filter the archive">
+        {%- assign groups = "All,Work,Projects,Milestones" | split: "," %}
+        {%- for g in groups %}
+          {%- if g == "All" %}{% assign n = total %}{% else %}{% assign n = site.data.archive | where: "group", g | size %}{% endif %}
+        <button type="button" class="chip" aria-pressed="{% if g == 'All' %}true{% else %}false{% endif %}" data-filter="{{ g }}">{{ g }}<span class="chip-count">{{ n }}</span></button>
+        {%- endfor %}
+      </div>
+      <p class="meta" aria-live="polite" data-ledger-count>Showing {{ total }} of {{ total }}</p>
+    </div>
+    <ul class="ledger-list">
+      {%- for item in site.data.archive %}
+      <li class="ledger-row" data-group="{{ item.group }}">
+        <span class="ledger-year">{{ item.year }}</span>
+        <span class="ledger-icon" aria-hidden="true">{% include ink/icon-{{ item.icon }}.svg %}</span>
+        <span class="ledger-kind meta">{{ item.kind }}</span>
+        <span class="ledger-text">
+          <span class="ledger-title">{{ item.title }}</span>
+          <span class="ledger-line">{{ item.line }}</span>
+        </span>
+        <span class="ledger-links">
+          {%- for l in item.links %}<a class="inklink" href="{{ l.url | relative_url }}">{{ l.label }}</a>{% endfor -%}
+        </span>
+      </li>
+      {%- endfor %}
+    </ul>
+  </section>
+</div>

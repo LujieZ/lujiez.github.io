@@ -42,7 +42,7 @@
 **Headline:** Identity for agents
 > I've been at Google since 2022, on Cloud Security. Most of my work is about how software proves who it is.
 >
-> Lately that software is AI agents. I designed how Agent Gateway injects OAuth tokens on the way out, so agents never hold them. I also shipped proof-of-possession token binding across our identity services, and built the services behind Gemini's role suggestions in the Cloud Console.
+> Lately that software is AI agents. I work on letting agents use the tools they need without ever holding the keys themselves, and on making a stolen credential useless to whoever took it. I also built the part of Google Cloud where Gemini suggests what access people should have.
 
 Link: Earlier at Google: service account keys →
 
@@ -50,7 +50,7 @@ Link: Earlier at Google: service account keys →
 **Headline:** An eDiscovery platform, from the first commit
 > I co-founded Marbury in 2024 and I'm the CTO. We help legal teams process and review documents for litigation without giving up control of the process.
 >
-> I built the platform from the start: a document pipeline (Docling and FastAPI), hybrid semantic search on OpenSearch, and an AI review agent that keeps an audit trail.
+> I built the platform from the start. It reads in a case's documents, lets lawyers search them by exact words or by meaning, and has an AI reviewer that writes down the reason for every call it makes.
 
 Link: Read the story → · marbury.ai ↗
 
@@ -59,8 +59,8 @@ Link: Read the story → · marbury.ai ↗
 ## 3. Deep Read teaser (Marbury)
 
 **Headline:** A review agent you can audit
-1. **Ingest:** Documents go through a Docling + FastAPI pipeline that extracts text and structure.
-2. **Search:** Keyword and semantic search run side by side on OpenSearch.
+1. **Ingest:** Documents come in, and the platform pulls out their text and layout.
+2. **Search:** Lawyers can search by exact words and by meaning at the same time.
 3. **Review:** The agent tags and flags documents and records why, so a lawyer can check every call.
 
 Read the story →
@@ -89,7 +89,7 @@ Read the story →
 **Headline:** About
 > I'm Sue Zhao (赵璐洁), a software engineer in Seattle.
 >
-> At Google Cloud Security I work on agentic identity and workload identity: service accounts, service agents, token binding, and access controls for AI agents. I also do Tier-0 on-call, and I've consulted for teams like Compute Engine, GKE, Vertex AI, and Waymo on workload identity design.
+> At Google Cloud Security I work on identity: how AI agents and other software prove who they are, and what they're allowed to do. I'm also on call for some of Google Cloud's most critical systems, and I've advised teams across Google Cloud, and at Waymo, on how their software should handle identity.
 >
 > Outside Google, I'm co-founder and CTO of Marbury AI. From 2023 to 2024 I led engineering part-time at Saturday Inc, building a coach portal for team orders, seat assignments, and subscription payments.
 >
@@ -109,13 +109,13 @@ Read the story →
 |---|---|---|---|
 | 2024– | Marbury AI | Co-founder & CTO. Built the platform from the first commit. | case study, marbury.ai |
 | 2023–24 | Saturday Inc | Lead engineer (part-time). Coach portal for orders, seating, and payments. | none |
-| 2022– | Google Cloud Security | Agentic identity, workload identity, service identity platform. | none |
-| 2021 | Disable/enable service account keys | Internship project. Shipped to GA in IAM, gcloud, and Console. | case study, GCP docs |
+| 2022– | Google Cloud Security | Identity and access for AI agents and the software that runs on Google Cloud. | none |
+| 2021 | Disable/enable service account keys | Internship project. Launched to every Google Cloud customer. | case study, GCP docs |
 | 2020–21 | NYU course website | Led the rebuild of the Intro to Engineering site, 1,000+ daily users. | eg.poly.edu |
-| 2020–21 | Grickly | NYU senior design project. [VERIFY: keep? Is there a link?] | none |
-| 2020 | Config push timelines | STEP internship. D3.js push timelines for 2,000+ daily users. | /projects/barchart |
-| 2019–20 | VEX library | C++ library for controlling a VEX robot with Arduino. | GitHub |
-| 2019 | Mobile robot 3D printing | AI4CE Lab. TurtleBot3 robots that printed a 2D floor plan. | /projects/3dprinting |
+| 2020–21 | Grickly | NYU senior design project. | none |
+| 2020 | Config push timelines | STEP internship. A timeline of configuration changes, used by 2,000+ people a day. | /projects/barchart |
+| 2019–20 | VEX library | Code for controlling a VEX competition robot. | GitHub |
+| 2019 | Mobile robot 3D printing | AI4CE Lab. Small robots that worked together to print a floor plan. | /projects/3dprinting |
 | 2018 | Started at NYU | Computer Science. | none |
 | 2015 | Moved to the U.S. | High school, age sixteen. | none |
 | n/a | Coursework | Sudoku, BlueV, job-change prediction, two AI puzzles. | GitHub |
@@ -142,16 +142,16 @@ Read the story →
 
 ## 9. Case study: Service account keys
 
-**Kicker:** Google Cloud IAM · 2021 internship, plus follow-up work after joining full-time
+**Kicker:** Google Cloud · 2021 internship, plus follow-up work after joining full-time
 **Headline:** Switching off a key without deleting it
 
 **Context**
-> Service account keys are long-lived credentials. Until 2021, if you thought a key had leaked, the only fix was to delete it. Deleting a key breaks anything still using it, and you can't undo it.
+> Service account keys are like long-lasting passwords that software uses to sign in to Google Cloud. Until 2021, if you thought a key had leaked, the only fix was to delete it. Deleting a key breaks anything still using it, and you can't undo it.
 
 **My role**
-> As an intern in 2021, I designed and implemented the IAM APIs to disable and re-enable a key. I worked with four teams to add it to gcloud and the Cloud Console, and launched it to GA. It's available to millions of users.
+> As an intern in 2021, I designed and built a way to switch a key off and back on. I worked with four teams to add it everywhere customers manage their keys, and launched it to everyone. It's available to millions of users.
 >
-> After joining full-time, I built the API and Console support for automatically disabling leaked keys. This is now on by default across Google Cloud.
+> After joining full-time, I built the feature that switches off a leaked key automatically. This is now on by default across Google Cloud.
 
 **Diagram (illustrative)**
 > Before: created → active → deleted.
@@ -174,4 +174,4 @@ Read the story →
 | BEYOND THE CODE: "A Craftsman's Philosophy" | **Deleted.** Replaced by the short "A little more about me" (§5). |
 | What's Next | **Deleted.** |
 | Timeline block | Moved into the Archive (§7). |
-| Dollar Dreadful credit | [VERIFY: keep in the footer?] |
+| Dollar Dreadful credit | **Removed.** |

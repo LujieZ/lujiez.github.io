@@ -117,7 +117,7 @@ Read the story →
 | 2023–24 | Saturday Inc | Lead engineer (part-time). Coach portal for orders, seating, and payments. | saturday.fit |
 | 2022– | Google Cloud Security | Identity and access for AI agents and the software that runs on Google Cloud. | none |
 | 2021 | Disable/enable service account keys | Internship project. Launched to every Google Cloud customer. | case study, GCP docs |
-| 2020–21 | NYU course website | Led the rebuild of the Intro to Engineering site, 1,000+ daily users. | eg.poly.edu |
+| Oct 2020 – Jan 2022 | NYU course website | Led the rebuild of the Intro to Engineering site, 1,000+ daily users. | eg.poly.edu |
 | 2020–21 | Grickly | NYU senior design project. | none |
 | 2020 | Config push timelines | STEP internship. A timeline of configuration changes, used by 2,000+ people a day. | /projects/barchart |
 | 2019–20 | VEX library | Code for controlling a VEX competition robot. | GitHub |

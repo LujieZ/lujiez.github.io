@@ -22,7 +22,6 @@
   --head: 'IM Fell English', Georgia, serif;
   --body: 'EB Garamond', Georgia, serif;
   --mono: 'JetBrains Mono', ui-monospace, Menlo, monospace;
-  --nav: Baskerville, 'Libre Baskerville', Georgia, serif;
   --typewriter: 'Special Elite', 'Courier New', monospace;
   --head-track: -0.01em;
   --body-scale: 1.14;            /* EB Garamond runs small */
@@ -121,7 +120,7 @@ a:focus-visible, button:focus-visible, [tabindex]:focus-visible { outline: 2px s
 .nav {
   position: relative; z-index: 1; background: var(--paper);
   display: flex; flex-wrap: wrap; justify-content: center; gap: 4px; margin-top: 8px;
-  font-family: var(--nav); font-size: 14px;
+  font-family: var(--typewriter); font-size: 15px; letter-spacing: 0.02em;
 }
 .nav a { position: relative; display: inline-block; padding: 8px 16px; text-decoration: none; }
 .nav a:hover { color: var(--ink); }
@@ -611,6 +610,12 @@ figcaption { font-size: 13px; line-height: 1.4; color: var(--muted); }
   .contact-card h2 { font-size: 30px; }
   .elsewhere { padding: 22px 0 36px; }
   .elsewhere .link-row { font-size: 17px; }
+}
+
+/* Very narrow phones: keep the five menu items on one line */
+@media (max-width: 379px) {
+  .nav { font-size: 13px; letter-spacing: 0; }
+  .nav a { padding: 12px 3px; }
 }
 
 /* ---------- Motion ----------

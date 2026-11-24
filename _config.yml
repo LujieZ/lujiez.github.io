@@ -25,7 +25,12 @@ kramdown:
 exclude:
   - CONTENT.md
   - README.md
+  - REVIEW.md
   - Gemfile
   - Gemfile.lock
   - vendor
   - tests
+  - node_modules
+  - package.json
+  - package-lock.json
+  - test-results

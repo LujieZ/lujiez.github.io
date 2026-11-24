@@ -120,7 +120,7 @@ a:focus-visible, button:focus-visible, [tabindex]:focus-visible { outline: 2px s
 .nav {
   position: relative; z-index: 1; background: var(--paper);
   display: flex; flex-wrap: wrap; justify-content: center; gap: 4px; margin-top: 8px;
-  font-family: var(--typewriter); font-size: 15px; letter-spacing: 0.02em;
+  font-family: var(--body); font-weight: 600; font-size: 16px;
 }
 .nav a { position: relative; display: inline-block; padding: 8px 16px; text-decoration: none; }
 .nav a:hover { color: var(--ink); }
@@ -614,7 +614,7 @@ figcaption { font-size: 13px; line-height: 1.4; color: var(--muted); }
 
 /* Very narrow phones: keep the five menu items on one line */
 @media (max-width: 379px) {
-  .nav { font-size: 13px; letter-spacing: 0; }
+  .nav { font-size: 14px; }
   .nav a { padding: 12px 3px; }
 }
 

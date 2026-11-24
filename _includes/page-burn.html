@@ -1,9 +1,8 @@
 <script>
-/* Page burn: remembers where the reader clicked a link, then on the next page sets where
-   the burn starts and how far it must spread, and plays a short crackle (made here with
-   Web Audio, no sound file). The burn itself is CSS; see "Motion" in chronicle.css. */
+/* Page burn: when a page arrives through a page transition, varies where the burning line's
+   pattern starts and plays a short crackle (made here with Web Audio, no sound file).
+   The burn itself is CSS; see "Motion" in chronicle.css. */
 (function () {
-  var AT = 'chronicle-burn-at';
   window.chronicleSoundOn = function () {
     try { return localStorage.getItem('chronicle-sound') !== 'off'; } catch (e) { return true; }
   };
@@ -46,24 +45,10 @@
       setTimeout(function () { ac.close(); }, 1800);
     });
   };
-  addEventListener('click', function (e) {
-    var a = e.target.closest && e.target.closest('a[href]');
-    if (!a || a.origin !== location.origin || a.target || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-    var x = e.clientX, y = e.clientY;
-    if (!e.detail) { var r = a.getBoundingClientRect(); x = r.left + r.width / 2; y = r.top + r.height / 2; } // keyboard
-    try { sessionStorage.setItem(AT, JSON.stringify({ x: x / innerWidth, y: y / innerHeight, t: Date.now() })); } catch (err) {}
-  });
   addEventListener('pagereveal', function (e) {
     if (!e.viewTransition) return;
-    var p = null;
-    try { p = JSON.parse(sessionStorage.getItem(AT)); sessionStorage.removeItem(AT); } catch (err) {}
-    if (!p || Date.now() - p.t > 10000) p = { x: 0.5, y: 0.5 }; // back/forward: burn from the middle
-    var w = innerWidth, h = innerHeight, x = p.x * w, y = p.y * h;
-    var far = Math.max(Math.hypot(x, y), Math.hypot(w - x, y), Math.hypot(x, h - y), Math.hypot(w - x, h - y));
-    var s = document.documentElement.style;
-    s.setProperty('--burn-x', x + 'px');
-    s.setProperty('--burn-y', y + 'px');
-    s.setProperty('--burn-end', Math.ceil(far / 0.5) + 'px'); // the hole's narrowest point is ~0.53 of the image's half-width
+    // start the ragged line at a different point each time, so it never looks the same twice
+    document.documentElement.style.setProperty('--burn-shift', Math.round(Math.random() * -1024) + 'px');
     if (window.chronicleSoundOn()) window.chronicleCrackle();
   });
 })();

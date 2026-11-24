@@ -24,7 +24,7 @@ folio: Section B
       <li class="smallcard">
         <span class="smallcard-icon" aria-hidden="true">{% include ink/icon-{{ item.icon }}.svg %}</span>
         <span class="smallcard-text">
-          <span class="meta">{{ item.year }} · {{ item.kind }}</span>
+          <span class="meta">{{ item.dates }} · {{ item.kind }}</span>
           <span class="smallcard-title">{{ item.title }}</span>
           <span class="smallcard-line">{{ item.line }}</span>
           {%- if item.links %}<span class="link-row">{% for l in item.links %}<a class="inklink" href="{{ l.url | relative_url }}">{{ l.label }}</a>{% endfor %}</span>{% endif %}

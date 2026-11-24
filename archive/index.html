@@ -22,7 +22,7 @@ folio: Section C
     <ul class="ledger-list">
       {%- for item in site.data.archive %}
       <li class="ledger-row" data-group="{{ item.group }}">
-        <span class="ledger-year">{{ item.year }}</span>
+        <span class="ledger-when"><span class="ledger-year">{{ item.year }}</span>{% if item.dates != item.year %}<span class="ledger-dates meta">{{ item.dates }}</span>{% endif %}</span>
         <span class="ledger-icon" aria-hidden="true">{% include ink/icon-{{ item.icon }}.svg %}</span>
         <span class="ledger-kind meta">{{ item.kind }}</span>
         <span class="ledger-text">

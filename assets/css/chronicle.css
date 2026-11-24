@@ -360,14 +360,16 @@ figcaption { font-size: 13px; line-height: 1.4; color: var(--muted); }
 .chip-count { font-family: var(--mono); font-size: 11px; opacity: 0.75; }
 .ledger-list { list-style: none; padding: 0; border-top: 3px double var(--ink); }
 .ledger-row {
-  display: grid; grid-template-columns: 120px 40px 130px minmax(0, 1fr) 230px; align-items: start; gap: 20px;
+  display: grid; grid-template-columns: 170px 40px 120px minmax(0, 1fr) 220px; align-items: start; gap: 20px;
   padding: 20px 0; border-bottom: 1px solid var(--ink); transition: background-color 200ms ease;
 }
 .ledger-row[hidden] { display: none; }
 .ledger-row:hover { background: rgba(142, 47, 28, 0.05); }
 .ledger-row svg { width: 32px; height: 32px; transition: transform 300ms var(--spring); }
 .ledger-row:hover svg { transform: rotate(-10deg) scale(1.08); }
+.ledger-when { display: flex; flex-direction: column; gap: 8px; }
 .ledger-year { font-family: var(--head); font-size: 34px; line-height: 1; }
+.ledger-dates { letter-spacing: 0.06em; }
 .ledger-icon { color: var(--ink); }
 .ledger-kind { padding-top: 8px; }
 .ledger-text { display: flex; flex-direction: column; gap: 4px; }
@@ -426,8 +428,11 @@ figcaption { font-size: 13px; line-height: 1.4; color: var(--muted); }
 .colophon-name { font-family: var(--mast); font-size: 28px; letter-spacing: 0.02em; }
 .colophon-line { font-size: 15px; line-height: 1.5; }
 .colophon-line a { text-decoration: underline; text-underline-offset: 3px; }
-.colophon nav { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 24px; font-size: 15px; font-weight: 500; }
-.colophon nav a { text-decoration: none; padding: 6px 0; }
+.colophon-icons { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; }
+.colophon-icons a { display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: 50%; color: var(--ink); }
+.colophon-icons svg { width: 30px; height: 30px; transition: transform 300ms var(--spring); }
+.colophon-icons a:hover { color: var(--oxide); }
+.colophon-icons a:hover svg, .colophon-icons a:focus-visible svg { transform: rotate(-10deg) scale(1.12); }
 .colophon-issue { padding-bottom: 28px; font-family: var(--mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
 
 /* ---------- Small screens ---------- */
@@ -506,8 +511,7 @@ figcaption { font-size: 13px; line-height: 1.4; color: var(--muted); }
 
   .colophon-main { flex-direction: column; gap: 14px; padding-top: 24px; padding-bottom: 8px; }
   .colophon-name { font-size: 26px; }
-  .colophon nav { gap: 0 20px; }
-  .colophon nav a { padding: 10px 0; }
+  .colophon-icons { gap: 0 4px; margin-left: -10px; }
   .colophon-issue { font-size: 11px; padding-bottom: 32px; }
 
   .page-head { padding: 28px 0 24px; gap: 12px; }
@@ -564,7 +568,8 @@ figcaption { font-size: 13px; line-height: 1.4; color: var(--muted); }
   .ledger-row { grid-template-columns: 36px minmax(0, 1fr); column-gap: 14px; row-gap: 4px; padding: 16px 0; }
   .ledger-icon { grid-column: 1; grid-row: 1 / span 4; padding-top: 2px; }
   .ledger-row svg { width: 30px; height: 30px; }
-  .ledger-year, .ledger-kind, .ledger-text, .ledger-links { grid-column: 2; }
+  .ledger-when, .ledger-kind, .ledger-text, .ledger-links { grid-column: 2; }
+  .ledger-when { flex-direction: row; align-items: baseline; gap: 10px; }
   .ledger-year { font-size: 22px; }
   .ledger-kind { padding-top: 0; }
   .ledger-title { font-size: 18px; }
@@ -643,5 +648,5 @@ figcaption { font-size: 13px; line-height: 1.4; color: var(--muted); }
 @keyframes page-in { from { opacity: 0; transform: translateY(18px); } }
 @media (prefers-reduced-motion: reduce) {
   .caret { animation: none; }
-  a, .mlink svg, .archcard, .archcard svg, .archbtn svg, .stamp, .nav a, .smallcard, .smallcard svg, .nextcard-art svg, .chip, .ledger-row, .ledger-row svg { transition: none; }
+  a, .mlink svg, .archcard, .archcard svg, .archbtn svg, .stamp, .nav a, .smallcard, .smallcard svg, .nextcard-art svg, .chip, .ledger-row, .ledger-row svg, .colophon-icons svg { transition: none; }
 }

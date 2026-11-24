@@ -11,9 +11,9 @@ resume_url: /Resume_LujieZ.pdf
 issue: "002"
 issue_date: November 2026
 elsewhere:
-  - { label: GitHub, url: "https://github.com/LujieZ" }
-  - { label: LinkedIn, url: "https://www.linkedin.com/in/lujiez/" }
-  - { label: X, url: "https://x.com/zhaosuesue" }
+  - { label: GitHub, url: "https://github.com/LujieZ", icon: social-github }
+  - { label: LinkedIn, url: "https://www.linkedin.com/in/lujiez/", icon: social-linkedin }
+  - { label: X, url: "https://x.com/zhaosuesue", icon: social-x }
 collections:
   work:
     output: true

@@ -109,6 +109,8 @@ Read the story →
 
 ## 7. Archive entries
 
+> **Update (Nov 24):** entries now carry month ranges from the résumé and the old Projects page, ordered by start date. The live list is `_data/archive.yml`.
+
 | Year | Title | One line | Link |
 |---|---|---|---|
 | 2024– | Marbury AI | Co-founder & CTO. Built the platform from the first commit. | case study, marbury.ai |

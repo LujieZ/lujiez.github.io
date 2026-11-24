@@ -123,11 +123,11 @@ a:focus-visible, button:focus-visible, [tabindex]:focus-visible { outline: 2px s
   display: flex; flex-wrap: wrap; justify-content: center; gap: 4px; margin-top: 8px;
   font-family: var(--nav); font-size: 14px;
 }
-.nav a {
-  position: relative; display: inline-block; padding: 8px 16px; text-decoration: none; border-radius: 2px;
-  transition: background-color 150ms ease, color 150ms ease;
-}
-.nav a:hover { background: var(--ink); color: var(--paper); }
+.nav a { position: relative; display: inline-block; padding: 8px 16px; text-decoration: none; }
+.nav a:hover { color: var(--ink); }
+/* The hand-drawn oxblood stroke marks the current page, and draws in under the others on hover or focus */
+.nav a svg { left: 10px !important; width: calc(100% - 20px) !important; clip-path: inset(-6px calc(100% + 6px) -6px -6px); transition: clip-path 380ms var(--ease); }
+.nav a[aria-current="page"] svg, .nav a:hover svg, .nav a:focus-visible svg { clip-path: inset(-6px -6px -6px -6px); }
 
 /* ---------- Shared pieces ---------- */
 .kicker { font-family: var(--mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--oxide); }
@@ -604,6 +604,7 @@ figcaption { font-size: 13px; line-height: 1.4; color: var(--muted); }
   .resume-frame { height: 70vh; min-height: 420px; }
 
   .nav a { padding: 12px 6px; }
+  .nav a svg { left: 2px !important; width: calc(100% - 4px) !important; }
   .nav { font-size: 14px; }
   .contact-cards { padding: 24px 0 28px; gap: 24px; }
   .contact-card { flex-basis: 100%; padding: 20px 18px 18px; }
@@ -666,5 +667,5 @@ figcaption { font-size: 13px; line-height: 1.4; color: var(--muted); }
 @keyframes page-in { from { opacity: 0; transform: translateY(18px); } }
 @media (prefers-reduced-motion: reduce) {
   .caret { animation: none; }
-  a, .mlink svg, .archcard, .archcard svg, .archbtn svg, .stamp, .nav a, .smallcard, .smallcard svg, .nextcard-art svg, .chip, .ledger-row, .ledger-row svg, .colophon-icons svg, .tip { transition: none; }
+  a, .mlink svg, .archcard, .archcard svg, .archbtn svg, .stamp, .nav a, .smallcard, .smallcard svg, .nextcard-art svg, .chip, .ledger-row, .ledger-row svg, .colophon-icons svg, .tip, .nav a svg { transition: none; }
 }

@@ -24,7 +24,7 @@
       {%- assign current = false -%}
       {%- if page.url == item.url -%}{%- assign current = true -%}{%- endif -%}
       {%- if item.match and page.url contains item.match -%}{%- assign current = true -%}{%- endif -%}
-      <a href="{{ item.url | relative_url }}"{% if current %} aria-current="page"{% endif %}>{{ item.title }}{% if current %}{% include ink/nav-underline.svg %}{% endif %}</a>
+      <a href="{{ item.url | relative_url }}"{% if current %} aria-current="page"{% endif %}>{{ item.title }}{% include ink/nav-underline.svg %}</a>
     {%- endfor -%}
   </nav>
 </header>

@@ -1,7 +1,7 @@
 # The Lujie Chronicle: Content Draft v2
 
 > **Step 1 of 9: review copy before design.** Excluded from the site build.
-> Edit inline or add `> SUE:` comments. **[VERIFY]** marks anything still unconfirmed.
+> All facts confirmed as of Nov 24, 2026; no open [VERIFY] items. The live copy is in the site files; this draft is kept for reference.
 >
 > **v2 changes:** rebuilt from the Nov 2026 résumé. Marbury role corrected to Co-founder & CTO. The old "Google Years / NYU Chapter / Beyond the Code / What's Next" columns are deleted entirely; see §10 for where each one went. I rewrote the copy to be plainer: facts first, no slogans, no "rising talent" voice, and no invented quotes.
 >

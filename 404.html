@@ -1,0 +1,15 @@
+---
+layout: default
+title: Page not found
+description: This page isn't in the Chronicle.
+folio: Page 404
+permalink: /404.html
+sitemap: false
+---
+<div class="wrap">
+  {% include page-head.html title="Stop the presses." dek="That page isn't in this issue. It may have moved when the Chronicle was redesigned." %}
+  <section class="notfound" aria-label="Where to go instead">
+    <a class="inklink mlink" href="{{ '/' | relative_url }}">{% include ink/manicule.svg %}Back to the front page</a>
+    <a class="inklink mlink" href="{{ '/archive/' | relative_url }}">{% include ink/manicule.svg %}Look it up in the archive</a>
+  </section>
+</div>

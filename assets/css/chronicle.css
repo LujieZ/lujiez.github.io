@@ -423,6 +423,8 @@ figcaption { font-size: 13px; line-height: 1.4; color: var(--muted); }
 .elsewhere { border-top: 3px double var(--ink); padding: 28px 0 56px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 12px 32px; }
 .elsewhere .link-row { font-size: 19px; gap: 6px 28px; }
 
+.notfound { padding: 36px 0 72px; display: flex; flex-wrap: wrap; gap: 16px 40px; }
+
 /* ---------- Colophon ---------- */
 .colophon { border-top: 4px solid var(--ink); }
 .colophon-main { padding-top: 32px; padding-bottom: 40px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; }

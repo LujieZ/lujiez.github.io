@@ -458,6 +458,16 @@ figcaption { font-size: 13px; line-height: 1.4; color: var(--muted); }
 .sound-toggle[aria-pressed="false"] .wave, .sound-toggle[aria-pressed="true"] .mute { display: none; }
 .colophon-issue { padding-bottom: 28px; font-family: var(--mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
 
+/* Keep the archive's text readable before the full phone layout takes over. */
+@media (min-width: 720px) and (max-width: 1100px) {
+  .ledger-row { grid-template-columns: 150px 36px minmax(0, 1fr); gap: 8px 20px; }
+  .ledger-when { grid-column: 1; grid-row: 1 / span 3; }
+  .ledger-icon { grid-column: 2; grid-row: 1 / span 3; }
+  .ledger-kind, .ledger-text, .ledger-links { grid-column: 3; }
+  .ledger-kind { padding-top: 0; }
+  .ledger-links { flex-direction: row; flex-wrap: wrap; gap: 6px 20px; }
+}
+
 /* ---------- Small screens ---------- */
 @media (max-width: 719px) {
   .wide { display: none; }

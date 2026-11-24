@@ -134,6 +134,8 @@ a:focus-visible, button:focus-visible, [tabindex]:focus-visible { outline: 2px s
 .dek { font-family: var(--head); font-style: italic; line-height: 1.4; }
 .body-copy { font-size: calc(17px * var(--body-scale)); line-height: 1.6; }
 .fleuron { display: flex; justify-content: center; padding-top: 10px; color: var(--ink); }
+/* A fleuron is the whole section break: no rule under it */
+.fleuron + .leads, .fleuron + .outside { border-top: 0; padding-top: 24px; }
 
 /* Underlined text link */
 .inklink {

@@ -118,7 +118,7 @@ Read the story →
 | 2019 | Mobile robot 3D printing | AI4CE Lab. Small robots that worked together to print a floor plan. | /projects/3dprinting |
 | 2018 | Started at NYU | Computer Science. | none |
 | 2015 | Moved to the U.S. | High school, age sixteen. | none |
-| n/a | Coursework | Sudoku, BlueV, job-change prediction, two AI puzzles. | GitHub |
+| 2018–21 | Coursework | Sudoku, BlueV, job-change prediction, two AI puzzles. | GitHub |
 
 ---
 

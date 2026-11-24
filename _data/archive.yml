@@ -85,6 +85,18 @@
   strip: true
   links:
     - { label: "Project page →", url: /projects/3dprinting }
+- year: "2018–21"
+  kind: Coursework
+  group: Projects
+  title: Coursework
+  also: true
+  line: Sudoku, BlueV, job-change prediction, two AI puzzles.
+  icon: pencil
+  links:
+    - { label: "Sudoku ↗", url: "https://github.com/LujieZ/cs1114-sudoku" }
+    - { label: "BlueV ↗", url: "https://docs.google.com/presentation/d/1ijQpYIHXFUvPpG1JZRgfgI-wbjIKB8XsHZ3AicccLm8/edit?usp=sharing" }
+    - { label: "Job-change prediction ↗", url: "https://github.com/LujieZ/cs4563-machine-learning" }
+    - { label: "AI puzzles ↗", url: "https://github.com/LujieZ/cs4613-artificial-intelligence" }
 - year: "2018"
   kind: Milestone
   group: Milestones
@@ -98,15 +110,3 @@
   line: High school, age sixteen.
   icon: plane
   strip: true
-- year: "—"
-  kind: Coursework
-  group: Projects
-  title: Coursework
-  also: true
-  line: Sudoku, BlueV, job-change prediction, two AI puzzles.
-  icon: pencil
-  links:
-    - { label: "Sudoku ↗", url: "https://github.com/LujieZ/cs1114-sudoku" }
-    - { label: "BlueV ↗", url: "https://docs.google.com/presentation/d/1ijQpYIHXFUvPpG1JZRgfgI-wbjIKB8XsHZ3AicccLm8/edit?usp=sharing" }
-    - { label: "Job-change prediction ↗", url: "https://github.com/LujieZ/cs4563-machine-learning" }
-    - { label: "AI puzzles ↗", url: "https://github.com/LujieZ/cs4613-artificial-intelligence" }

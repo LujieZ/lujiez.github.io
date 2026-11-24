@@ -32,7 +32,7 @@
 **Headline:** Building things that should exist.
 
 **Standfirst:**
-> I'm Sue. I work on identity for AI agents and workloads at Google Cloud, and I'm building Marbury AI, an eDiscovery platform for legal teams.
+> I'm Sue Zhao, a software engineer in Seattle. At Google Cloud I work on how AI agents prove who they are, and I co-founded Marbury AI, which helps lawyers review case documents.
 
 ---
 

@@ -570,14 +570,53 @@ figcaption { font-size: 13px; line-height: 1.4; color: var(--muted); }
   .resume-frame { height: 70vh; min-height: 420px; }
 }
 
-/* ---------- Motion ---------- */
+/* ---------- Motion ----------
+   The signature moves, all switched off for reduced motion:
+   1. page turn: the next page is laid down from the top while the masthead stays put
+   2. underline draw: on hover a link's underline redraws left to right in oxblood
+   3. story cards: hover or focus nudges the drawing and slides the pointing hand
+   4. sections ease in as they scroll into view; the archive strip drags (see chronicle.js) */
 @media (prefers-reduced-motion: no-preference) {
   html { scroll-behavior: smooth; }
+
+  /* 1. Page turn (cross-document view transitions; other browsers just navigate) */
+  @view-transition { navigation: auto; }
+  .masthead { view-transition-name: masthead; }
+  .colophon { view-transition-name: colophon; }
+  ::view-transition-group(masthead), ::view-transition-group(colophon) { animation-duration: 0s; }
+  ::view-transition-old(root) { animation: 280ms ease-in both page-out; }
+  ::view-transition-new(root) { animation: 560ms var(--ease) 60ms both page-in; }
+
+  /* 2. Underline draw */
+  .inklink:not(.mlink), .inklink-text {
+    background: linear-gradient(var(--oxide), var(--oxide)) no-repeat 0 100% / 0 1.5px;
+    background-origin: content-box;
+    transition: color 180ms ease, text-decoration-color 180ms ease, background-size 360ms var(--ease);
+  }
+  .inklink:not(.mlink):hover, .inklink:not(.mlink):focus-visible,
+  .inklink-text:hover, .inklink-text:focus-visible {
+    text-decoration-color: transparent; text-underline-offset: 4px; background-size: 100% 1.5px;
+  }
+  .bandlink:not(.mlink) { background-image: linear-gradient(var(--band-acc), var(--band-acc)); }
+
+  /* 3. Story cards */
+  .feature-art { overflow: hidden; }
+  .feature-art svg { transition: transform 520ms var(--ease); }
+  .feature:hover .feature-art svg, .feature:focus-within .feature-art svg { transform: translate(6px, -4px) scale(1.05) rotate(-1.5deg); }
+  .feature-meta { transition: transform 360ms var(--ease); }
+  .feature:hover .feature-meta, .feature:focus-within .feature-meta { transform: translateX(6px); }
+  .feature h2 a { transition: color 180ms ease; }
+  .feature:hover h2 a, .feature:focus-within h2 a { color: var(--oxide); }
+  .feature:hover .mlink svg, .feature:focus-within .mlink svg { transform: translateX(6px) rotate(-4deg); }
+
+  /* 4. Scroll reveal */
   @supports (animation-timeline: view()) {
     .reveal { animation: inkrise linear both; animation-timeline: view(); animation-range: entry 0% entry 55%; }
   }
 }
 @keyframes inkrise { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
+@keyframes page-out { to { opacity: 0; transform: translateY(-12px); } }
+@keyframes page-in { from { clip-path: inset(0 0 100% 0); } to { clip-path: inset(0 0 0 0); } }
 @media (prefers-reduced-motion: reduce) {
   .caret { animation: none; }
   a, .mlink svg, .archcard, .archcard svg, .archbtn svg, .stamp, .nav a, .smallcard, .smallcard svg, .nextcard-art svg, .chip, .ledger-row, .ledger-row svg { transition: none; }

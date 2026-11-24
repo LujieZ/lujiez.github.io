@@ -403,6 +403,22 @@ figcaption { font-size: 13px; line-height: 1.4; color: var(--muted); }
 .resume-frame { width: 100%; height: 80vh; min-height: 520px; border: 1px solid var(--ink); background: #fff; }
 .resume-frame p { padding: 24px; }
 
+/* ---------- Contact ---------- */
+.contact-cards { padding: 40px 0 40px; display: flex; flex-wrap: wrap; gap: 32px; }
+.contact-card {
+  flex: 1 1 420px; min-width: 0; margin: 5px;
+  border: 1px solid var(--ink); outline: 1px solid var(--ink); outline-offset: 4px;
+  padding: 28px 28px 24px; display: flex; flex-direction: column; gap: 12px;
+}
+.contact-card-icon { color: var(--ink); }
+.contact-card-icon svg { width: 40px; height: 40px; }
+.contact-card h2 { font-family: var(--head); font-weight: 400; font-size: 38px; line-height: 1.05; }
+.contact-card .body-copy { max-width: 40ch; }
+.contact-card .mlink { margin-top: 6px; font-size: 17px; }
+.contact-card-note { text-transform: none; letter-spacing: 0.04em; font-size: 12px; }
+.elsewhere { border-top: 3px double var(--ink); padding: 28px 0 56px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 12px 32px; }
+.elsewhere .link-row { font-size: 19px; gap: 6px 28px; }
+
 /* ---------- Colophon ---------- */
 .colophon { border-top: 4px solid var(--ink); }
 .colophon-main { padding-top: 32px; padding-bottom: 40px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; }
@@ -568,11 +584,19 @@ figcaption { font-size: 13px; line-height: 1.4; color: var(--muted); }
   .contact-list li { gap: 14px; padding: 12px 0; }
   .contact-list li > span:last-child { font-size: 16px; }
   .resume-frame { height: 70vh; min-height: 420px; }
+
+  .nav a { padding: 12px 6px; }
+  .nav { font-size: 14px; }
+  .contact-cards { padding: 24px 0 28px; gap: 24px; }
+  .contact-card { flex-basis: 100%; padding: 20px 18px 18px; }
+  .contact-card h2 { font-size: 30px; }
+  .elsewhere { padding: 22px 0 36px; }
+  .elsewhere .link-row { font-size: 17px; }
 }
 
 /* ---------- Motion ----------
    The signature moves, all switched off for reduced motion:
-   1. page turn: the next page is laid down from the top while the masthead stays put
+   1. page turn: the next page fades in while rising slightly; the masthead and colophon stay put
    2. underline draw: on hover a link's underline redraws left to right in oxblood
    3. story cards: hover or focus nudges the drawing and slides the pointing hand
    4. sections ease in as they scroll into view; the archive strip drags (see chronicle.js) */
@@ -584,8 +608,8 @@ figcaption { font-size: 13px; line-height: 1.4; color: var(--muted); }
   .masthead { view-transition-name: masthead; }
   .colophon { view-transition-name: colophon; }
   ::view-transition-group(masthead), ::view-transition-group(colophon) { animation-duration: 0s; }
-  ::view-transition-old(root) { animation: 280ms ease-in both page-out; }
-  ::view-transition-new(root) { animation: 560ms var(--ease) 60ms both page-in; }
+  ::view-transition-old(root) { animation: 180ms ease-out both page-out; }
+  ::view-transition-new(root) { animation: 420ms var(--ease) 80ms both page-in; }
 
   /* 2. Underline draw */
   .inklink:not(.mlink), .inklink-text {
@@ -615,8 +639,8 @@ figcaption { font-size: 13px; line-height: 1.4; color: var(--muted); }
   }
 }
 @keyframes inkrise { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
-@keyframes page-out { to { opacity: 0; transform: translateY(-12px); } }
-@keyframes page-in { from { clip-path: inset(0 0 100% 0); } to { clip-path: inset(0 0 0 0); } }
+@keyframes page-out { to { opacity: 0; } }
+@keyframes page-in { from { opacity: 0; transform: translateY(18px); } }
 @media (prefers-reduced-motion: reduce) {
   .caret { animation: none; }
   a, .mlink svg, .archcard, .archcard svg, .archbtn svg, .stamp, .nav a, .smallcard, .smallcard svg, .nextcard-art svg, .chip, .ledger-row, .ledger-row svg { transition: none; }

@@ -77,6 +77,8 @@ Read the story →
 
 ## 5. Outside the Office
 
+> **Update (Nov 24):** the About page was removed. Its content now lives in this front-page section ("About the author · A little more about me"); see `index.html`. Contact and Résumé are separate pages again, as on the old site. `/about/` forwards to `/#about`.
+
 **Headline:** A little more about me
 > I moved from China to the U.S. for high school when I was sixteen, then went to NYU as the first in my family to go to college. Outside work I paint and work out.
 >
@@ -85,6 +87,8 @@ Read the story →
 ---
 
 ## 6. About
+
+> **Superseded:** this text was folded into §5 on the front page.
 
 **Headline:** About
 > I'm Sue Zhao (赵璐洁), a software engineer in Seattle.

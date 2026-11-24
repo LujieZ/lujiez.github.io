@@ -107,16 +107,21 @@ folio: Page 1
   </section>
 
   <div class="fleuron" aria-hidden="true">{% include ink/fleuron.svg %}</div>
-  <section class="outside reveal" aria-labelledby="outside-h">
+  <section class="outside reveal" id="about" aria-labelledby="outside-h">
     <div class="outside-head">
       {% include ink/brushbell.svg %}
-      <p class="kicker">Outside the office</p>
+      <p class="kicker">About the author</p>
       <h2 id="outside-h">A little more about me</h2>
     </div>
     <div class="outside-body">
-      <p class="body-copy"><span class="dropcap" aria-hidden="true">I</span><span class="sr-only">I</span> moved from China to the U.S. for high school when I was sixteen, then went to NYU as the first in my family to go to college. Outside work I paint and work out.</p>
-      <p class="body-copy">At Google I've mentored engineers, helped an intern convert to full-time, and organized a 500-person event as a Women@ ambassador.</p>
-      <a class="inklink mlink" href="{{ '/about/' | relative_url }}">{% include ink/manicule.svg %}More about me</a>
+      <p class="body-copy"><span class="dropcap" aria-hidden="true">I</span><span class="sr-only">I</span> moved from China to the U.S. for high school when I was sixteen, then went to NYU as the first in my family to go to college. I studied Computer Science there (B.S. 2021, magna cum laude) with minors in math and finance.</p>
+      <p class="body-copy">At Google I'm also on call for some of Google Cloud's most critical systems, and I've advised teams across Google Cloud, and at Waymo, on how their software should handle identity. I've mentored engineers, helped an intern convert to full-time, and organized a 500-person event as a Women@ ambassador.</p>
+      <p class="body-copy">From 2023 to 2024 I also led engineering part-time at <a class="inklink-text" href="https://saturday.fit/">Saturday Inc</a>, building a coach portal for team orders, seat assignments, and subscription payments.</p>
+      <p class="body-copy">Outside work I paint and work out.</p>
+      <p class="lead-links">
+        <a class="inklink mlink" href="{{ '/contact' | relative_url }}">{% include ink/manicule.svg %}Get in touch</a>
+        <a class="inklink" href="{{ '/cv' | relative_url }}">Read my résumé</a>
+      </p>
     </div>
   </section>
 </div>

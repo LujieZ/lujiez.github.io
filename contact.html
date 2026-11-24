@@ -1,4 +1,36 @@
 ---
-layout: redirect
-redirect_to: /about/
+layout: default
+title: Contact
+description: Email Sue Zhao or book a time to talk.
+folio: Section E
 ---
+<div class="wrap">
+  {% include page-head.html kicker="Section E · Letters to the editor" title="Contact" dek="Corrections and hellos are both welcome." %}
+
+  <section class="contact-cards" aria-label="Ways to get in touch">
+    <article class="contact-card">
+      <span class="contact-card-icon" aria-hidden="true">{% include ink/contact-envelope.svg %}</span>
+      <p class="kicker">Write</p>
+      <h2>Send an email</h2>
+      <p class="body-copy">Questions, collaboration opportunities, or just saying hello are always welcome.</p>
+      <a class="inklink mlink" href="mailto:{{ site.email }}">{% include ink/manicule.svg %}Email Sue</a>
+      <p class="meta contact-card-note">{{ site.email }}</p>
+    </article>
+    <article class="contact-card">
+      <span class="contact-card-icon" aria-hidden="true">{% include ink/contact-calendar.svg %}</span>
+      <p class="kicker">Meet</p>
+      <h2>Book a meeting</h2>
+      <p class="body-copy">Choose an available time. Google Calendar will send the confirmation and meeting details.</p>
+      <a class="inklink mlink" href="{{ site.calendar_url }}" rel="noopener noreferrer">{% include ink/manicule.svg %}View available times</a>
+      <p class="meta contact-card-note">Scheduling is handled by Google Calendar.</p>
+    </article>
+  </section>
+
+  <section class="elsewhere reveal" aria-labelledby="elsewhere-h">
+    <h2 id="elsewhere-h" class="kicker">Elsewhere</h2>
+    <p class="link-row">
+      {%- for link in site.elsewhere %}<a class="inklink-text" href="{{ link.url }}">{{ link.label }}</a>{% endfor -%}
+      <a class="inklink-text" href="{{ '/cv' | relative_url }}">Résumé</a>
+    </p>
+  </section>
+</div>

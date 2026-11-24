@@ -7,6 +7,9 @@
 - title: Archive
   url: /archive/
   match: /archive/
-- title: About
-  url: /about/
-  match: /about/
+- title: Résumé
+  url: /cv
+  match: /cv
+- title: Contact
+  url: /contact
+  match: /contact

@@ -6,10 +6,10 @@
       <span class="colophon-line">Made in Seattle. Corrections and hellos: <a href="mailto:{{ site.email }}">{{ site.email }}</a></span>
     </div>
     <nav class="colophon-icons" aria-label="Elsewhere">
-      <a href="{{ site.calendar_url }}" title="Book a time">{% include ink/contact-calendar.svg %}<span class="sr-only">Book a time</span></a>
-      <a href="{{ site.resume_url | relative_url }}" title="Résumé (PDF)">{% include ink/contact-page.svg %}<span class="sr-only">Résumé (PDF)</span></a>
+      <a href="{{ site.calendar_url }}">{% include ink/contact-calendar.svg %}<span class="tip">Book a time</span></a>
+      <a href="{{ site.resume_url | relative_url }}">{% include ink/contact-page.svg %}<span class="tip">Résumé (PDF)</span></a>
       {%- for link in site.elsewhere %}
-      <a href="{{ link.url }}" title="{{ link.label }}">{% include ink/{{ link.icon }}.svg %}<span class="sr-only">{{ link.label }}</span></a>
+      <a href="{{ link.url }}">{% include ink/{{ link.icon }}.svg %}<span class="tip">{{ link.label }}</span></a>
       {%- endfor %}
     </nav>
   </div>

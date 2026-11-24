@@ -19,7 +19,7 @@ collections:
     output: true
 defaults:
   - scope: { path: "", type: work }
-    values: { layout: feature, folio: Section B }
+    values: { layout: feature, folio: Page 2 }
 kramdown:
   auto_ids: false
 exclude:

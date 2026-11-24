@@ -10,6 +10,7 @@
       {%- for link in site.elsewhere %}
       <a href="{{ link.url }}">{% include ink/{{ link.icon }}.svg %}<span class="tip">{{ link.label }}</span></a>
       {%- endfor %}
+      <button type="button" class="sound-toggle" aria-label="Page-turn sound" aria-pressed="true" hidden data-sound-toggle>{% include ink/sound.svg %}<span class="tip">Sound on</span></button>
     </nav>
   </div>
   <p class="wrap colophon-issue">Issue {{ site.issue }} · {{ site.issue_date }}{% if page.folio %} · {{ page.folio }}{% endif %}</p>

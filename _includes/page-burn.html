@@ -1,0 +1,70 @@
+<script>
+/* Page burn: remembers where the reader clicked a link, then on the next page sets where
+   the burn starts and how far it must spread, and plays a short crackle (made here with
+   Web Audio, no sound file). The burn itself is CSS; see "Motion" in chronicle.css. */
+(function () {
+  var AT = 'chronicle-burn-at';
+  window.chronicleSoundOn = function () {
+    try { return localStorage.getItem('chronicle-sound') !== 'off'; } catch (e) { return true; }
+  };
+  window.chronicleCrackle = function () {
+    var AC = window.AudioContext || window.webkitAudioContext;
+    if (!AC) return;
+    var ac = new AC(), started = false;
+    setTimeout(function () { if (!started) ac.close(); }, 400); // browser refused sound
+    ac.resume().then(function () {
+      started = true;
+      var t0 = ac.currentTime + 0.02, sr = ac.sampleRate;
+      var buf = ac.createBuffer(1, Math.floor(sr * 1.4), sr), d = buf.getChannelData(0);
+      for (var i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
+      var out = ac.createGain();
+      out.gain.value = 0.3;
+      out.connect(ac.destination);
+      // the flame catching: low noise that swells and dies away
+      var n = ac.createBufferSource(), lp = ac.createBiquadFilter(), g = ac.createGain();
+      n.buffer = buf; lp.type = 'lowpass';
+      lp.frequency.setValueAtTime(250, t0);
+      lp.frequency.exponentialRampToValueAtTime(1500, t0 + 0.45);
+      lp.frequency.exponentialRampToValueAtTime(450, t0 + 1.2);
+      g.gain.setValueAtTime(0.0001, t0);
+      g.gain.exponentialRampToValueAtTime(0.6, t0 + 0.2);
+      g.gain.exponentialRampToValueAtTime(0.0001, t0 + 1.25);
+      n.connect(lp).connect(g).connect(out);
+      n.start(t0); n.stop(t0 + 1.3);
+      // crackles: short bright pops, thickening as the fire spreads
+      for (var k = 0; k < 36; k++) {
+        var at = t0 + Math.pow(Math.random(), 0.7) * 1.0, len = 0.004 + Math.random() * 0.018;
+        var c = ac.createBufferSource(), bp = ac.createBiquadFilter(), cg = ac.createGain();
+        c.buffer = buf; bp.type = 'bandpass';
+        bp.frequency.value = 1200 + Math.random() * 4200;
+        bp.Q.value = 0.8 + Math.random() * 2;
+        cg.gain.setValueAtTime(0.2 + Math.random() * 0.8, at);
+        cg.gain.exponentialRampToValueAtTime(0.0001, at + len);
+        c.connect(bp).connect(cg).connect(out);
+        c.start(at, Math.random() * 1.2, len + 0.01);
+      }
+      setTimeout(function () { ac.close(); }, 1800);
+    });
+  };
+  addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href]');
+    if (!a || a.origin !== location.origin || a.target || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    var x = e.clientX, y = e.clientY;
+    if (!e.detail) { var r = a.getBoundingClientRect(); x = r.left + r.width / 2; y = r.top + r.height / 2; } // keyboard
+    try { sessionStorage.setItem(AT, JSON.stringify({ x: x / innerWidth, y: y / innerHeight, t: Date.now() })); } catch (err) {}
+  });
+  addEventListener('pagereveal', function (e) {
+    if (!e.viewTransition) return;
+    var p = null;
+    try { p = JSON.parse(sessionStorage.getItem(AT)); sessionStorage.removeItem(AT); } catch (err) {}
+    if (!p || Date.now() - p.t > 10000) p = { x: 0.5, y: 0.5 }; // back/forward: burn from the middle
+    var w = innerWidth, h = innerHeight, x = p.x * w, y = p.y * h;
+    var far = Math.max(Math.hypot(x, y), Math.hypot(w - x, y), Math.hypot(x, h - y), Math.hypot(w - x, h - y));
+    var s = document.documentElement.style;
+    s.setProperty('--burn-x', x + 'px');
+    s.setProperty('--burn-y', y + 'px');
+    s.setProperty('--burn-end', Math.ceil(far / 0.5) + 'px'); // the hole's narrowest point is ~0.53 of the image's half-width
+    if (window.chronicleSoundOn()) window.chronicleCrackle();
+  });
+})();
+</script>

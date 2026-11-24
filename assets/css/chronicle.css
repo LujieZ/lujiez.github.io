@@ -433,10 +433,10 @@ figcaption { font-size: 13px; line-height: 1.4; color: var(--muted); }
 .colophon-line { font-size: 15px; line-height: 1.5; }
 .colophon-line a { text-decoration: underline; text-underline-offset: 3px; }
 .colophon-icons { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; }
-.colophon-icons a { position: relative; display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: 50%; color: var(--ink); }
+.colophon-icons > * { position: relative; display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: 50%; color: var(--ink); }
 .colophon-icons svg { width: 30px; height: 30px; transition: transform 300ms var(--spring); }
-.colophon-icons a:hover { color: var(--oxide); }
-.colophon-icons a:hover svg, .colophon-icons a:focus-visible svg { transform: rotate(-10deg) scale(1.12); }
+.colophon-icons > :hover { color: var(--oxide); }
+.colophon-icons > :hover svg, .colophon-icons > :focus-visible svg { transform: rotate(-10deg) scale(1.12); }
 .tip {
   position: absolute; bottom: calc(100% + 6px); left: 50%; z-index: 5;
   transform: translate(-50%, 4px); opacity: 0; pointer-events: none;
@@ -445,10 +445,13 @@ figcaption { font-size: 13px; line-height: 1.4; color: var(--muted); }
   transition: opacity 150ms ease, transform 200ms var(--ease);
 }
 .tip::after { content: ""; position: absolute; top: 100%; left: 50%; margin-left: -5px; border: 5px solid transparent; border-top-color: var(--ink); }
-.colophon-icons a:hover .tip, .colophon-icons a:focus-visible .tip { opacity: 1; transform: translate(-50%, 0); }
-.colophon-icons a:last-child .tip { left: auto; right: 0; transform: translate(0, 4px); }
-.colophon-icons a:last-child .tip::after { left: auto; right: 14px; }
-.colophon-icons a:last-child:hover .tip, .colophon-icons a:last-child:focus-visible .tip { transform: none; }
+.colophon-icons > :hover .tip, .colophon-icons > :focus-visible .tip { opacity: 1; transform: translate(-50%, 0); }
+.colophon-icons > :last-child .tip { left: auto; right: 0; transform: translate(0, 4px); }
+.colophon-icons > :last-child .tip::after { left: auto; right: 14px; }
+.colophon-icons > :last-child:hover .tip, .colophon-icons > :last-child:focus-visible .tip { transform: none; }
+.sound-toggle { padding: 0; border: 0; background: none; font: inherit; cursor: pointer; }
+.sound-toggle[hidden] { display: none; }
+.sound-toggle[aria-pressed="false"] .wave, .sound-toggle[aria-pressed="true"] .mute { display: none; }
 .colophon-issue { padding-bottom: 28px; font-family: var(--mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
 
 /* ---------- Small screens ---------- */
@@ -624,25 +627,39 @@ figcaption { font-size: 13px; line-height: 1.4; color: var(--muted); }
 
 /* ---------- Motion ----------
    The signature moves, all switched off for reduced motion:
-   1. page turn: the next page fades in while rising slightly; the masthead and colophon stay put
+   1. page burn: the old page burns away from where the reader clicked, showing the next page underneath
    2. underline draw: on hover a link's underline redraws left to right in oxblood
    3. story cards: hover or focus nudges the drawing and slides the pointing hand
    4. sections ease in as they scroll into view; the archive strip drags (see chronicle.js) */
 @media (prefers-reduced-motion: no-preference) {
   html { scroll-behavior: smooth; }
 
-  /* 1. Page turn (cross-document view transitions; other browsers just navigate) */
+  /* 1. Page burn (cross-document view transitions; other browsers just navigate).
+     The old page is masked by a growing hole (burn-hole.png) centred where the reader clicked;
+     the hole's glowing, charred rim (burn-edge.png) grows with it on its own layer.
+     page-burn.html sets --burn-x/--burn-y and how big the hole must get (--burn-end). */
   @view-transition { navigation: auto; }
-  .masthead { view-transition-name: masthead; }
-  .colophon { view-transition-name: colophon; }
-  ::view-transition-group(masthead), ::view-transition-group(colophon) { animation-duration: 0s; }
-  /* keep the paper grain on top during the turn, or the pinned masthead shows lighter patches */
+  ::view-transition-old(root), ::view-transition-group(burn-edge) {
+    animation: burn 1s cubic-bezier(0.5, 0.05, 0.7, 0.35) both;
+    --burn-at: calc(var(--burn-x, 50vw) - var(--burn-r)) calc(var(--burn-y, 50vh) - var(--burn-r));
+  }
+  ::view-transition-old(root) {
+    z-index: 1; mix-blend-mode: normal;
+    -webkit-mask: url(../img/burn-hole.png) var(--burn-at) / calc(var(--burn-r) * 2) calc(var(--burn-r) * 2) no-repeat, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask: url(../img/burn-hole.png) var(--burn-at) / calc(var(--burn-r) * 2) calc(var(--burn-r) * 2) no-repeat exclude, linear-gradient(#000 0 0);
+  }
+  ::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
+  .burn-edge { position: fixed; inset: 0; pointer-events: none; view-transition-name: burn-edge; }
+  ::view-transition-group(burn-edge) {
+    background: url(../img/burn-edge.png) var(--burn-at) / calc(var(--burn-r) * 2) calc(var(--burn-r) * 2) no-repeat;
+  }
+  ::view-transition-old(burn-edge), ::view-transition-new(burn-edge) { display: none; }
+  /* the paper grain stays on top of everything, as on the page itself */
   .grain { view-transition-name: grain; }
   ::view-transition-group(grain) { animation: none; mix-blend-mode: multiply; }
   ::view-transition-old(grain) { display: none; }
   ::view-transition-new(grain) { animation: none; mix-blend-mode: normal; }
-  ::view-transition-old(root) { animation: 180ms ease-out both page-out; }
-  ::view-transition-new(root) { animation: 420ms var(--ease) 80ms both page-in; }
 
   /* 2. Underline draw */
   .inklink:not(.mlink), .inklink-text {
@@ -672,8 +689,8 @@ figcaption { font-size: 13px; line-height: 1.4; color: var(--muted); }
   }
 }
 @keyframes inkrise { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
-@keyframes page-out { to { opacity: 0; } }
-@keyframes page-in { from { opacity: 0; transform: translateY(18px); } }
+@property --burn-r { syntax: "<length>"; inherits: true; initial-value: 0px; }
+@keyframes burn { to { --burn-r: var(--burn-end, 200vmax); } }
 @media (prefers-reduced-motion: reduce) {
   .caret { animation: none; }
   a, .mlink svg, .archcard, .archcard svg, .archbtn svg, .stamp, .nav a, .smallcard, .smallcard svg, .nextcard-art svg, .chip, .ledger-row, .ledger-row svg, .colophon-icons svg, .tip, .nav a svg { transition: none; }

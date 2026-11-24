@@ -139,4 +139,27 @@
     }, { threshold: 0.4 });
     videos.forEach(function (v) { vio.observe(v); });
   }
+
+  // ---------- Page-burn sound toggle (footer) ----------
+  // Shown only where the burn can happen: browsers with page transitions, motion not reduced.
+  var soundBtn = document.querySelector('[data-sound-toggle]');
+  if (soundBtn) {
+    if (!('PageRevealEvent' in window) || still) {
+      soundBtn.remove();
+    } else {
+      var showSound = function () {
+        var on = window.chronicleSoundOn();
+        soundBtn.setAttribute('aria-pressed', String(on));
+        soundBtn.querySelector('.tip').textContent = on ? 'Sound on' : 'Sound off';
+      };
+      soundBtn.hidden = false;
+      showSound();
+      soundBtn.addEventListener('click', function () {
+        var on = !window.chronicleSoundOn();
+        try { localStorage.setItem('chronicle-sound', on ? 'on' : 'off'); } catch (e) {}
+        showSound();
+        if (on) window.chronicleCrackle();
+      });
+    }
+  }
 })();

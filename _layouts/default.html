@@ -2,6 +2,7 @@
 <html lang="{{ site.lang | default: 'en' }}">
 <head>
   <meta charset="utf-8">
+  {% include security-policy.html %}
   <meta name="viewport" content="width=device-width, initial-scale=1">
   {%- if page.title %}
   <title>{{ page.title }} · {{ site.title }}</title>
@@ -32,7 +33,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Fredericka+the+Great&family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&family=JetBrains+Mono:wght@400;500&family=Special+Elite&display=swap">
   <link rel="stylesheet" href="{{ '/assets/css/chronicle.css' | relative_url }}">
-  {% include page-burn.html %}
+  <script src="{{ '/assets/js/page-burn.js' | relative_url }}"></script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to the stories</a>

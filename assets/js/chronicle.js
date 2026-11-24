@@ -6,15 +6,24 @@
    Everything respects prefers-reduced-motion. */
 (function () {
   'use strict';
-  var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var still = motion.matches;
   var behavior = still ? 'auto' : 'smooth';
+  var updateRain = function () {}, updateType = function () {}, updateVideos = function () {};
+  motion.addEventListener('change', function () {
+    still = motion.matches;
+    behavior = still ? 'auto' : 'smooth';
+    updateRain();
+    updateType();
+    updateVideos();
+  });
 
   /* ---------- Ink-dot rain ---------- */
   var canvas = document.querySelector('.rain');
-  if (canvas && canvas.getContext) {
-    var ctx = canvas.getContext('2d');
+  var ctx = canvas && canvas.getContext && canvas.getContext('2d');
+  if (ctx) {
     var color = getComputedStyle(document.documentElement).getPropertyValue('--dot').trim() || 'rgba(42,33,25,0.32)';
-    var drops = [], box = null, raf = 0;
+    var drops = [], box = null, raf = 0, inView = true;
     var size = function () {
       box = canvas.getBoundingClientRect();
       var dpr = window.devicePixelRatio || 1;
@@ -35,29 +44,30 @@
       }
     };
     size();
-    if (still) {
-      draw();
-    } else {
-      var loop = function () { draw(); raf = requestAnimationFrame(loop); };
-      raf = requestAnimationFrame(loop);
-      /* stop drawing while the masthead is off screen */
-      if ('IntersectionObserver' in window) {
-        new IntersectionObserver(function (entries) {
-          if (entries[0].isIntersecting) { if (!raf) raf = requestAnimationFrame(loop); }
-          else { cancelAnimationFrame(raf); raf = 0; }
-        }).observe(canvas);
-      }
+    var loop = function () { draw(); raf = requestAnimationFrame(loop); };
+    updateRain = function () {
+      cancelAnimationFrame(raf); raf = 0;
+      if (still) draw();
+      else if (inView && !document.hidden) raf = requestAnimationFrame(loop);
+    };
+    updateRain();
+    /* Stop drawing while the masthead or tab is off screen. */
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        inView = entries[0].isIntersecting;
+        updateRain();
+      }).observe(canvas);
     }
+    document.addEventListener('visibilitychange', updateRain);
     var t;
     window.addEventListener('resize', function () { clearTimeout(t); t = setTimeout(function () { size(); if (still) draw(); }, 150); });
   }
 
   /* ---------- Typewriter tagline ---------- */
   var typed = document.querySelector('[data-typed]');
-  if (typed && !still) {
-    var quote = typed.textContent, n = 0, hold = 0;
-    typed.textContent = '';
-    setInterval(function () {
+  if (typed) {
+    var quote = typed.textContent, n = 0, hold = 0, typing = 0;
+    var type = function () {
       if (n >= quote.length) {
         hold += 1;
         if (hold > 60) { hold = 0; n = 0; typed.textContent = ''; }
@@ -65,12 +75,20 @@
       }
       n += 1;
       typed.textContent = quote.slice(0, n);
-    }, 120);
+    };
+    updateType = function () {
+      clearInterval(typing);
+      if (still) typed.textContent = quote;
+      else { n = 0; hold = 0; typed.textContent = ''; typing = setInterval(type, 120); }
+    };
+    updateType();
   }
 
   /* ---------- Archive strip ---------- */
   var strip = document.querySelector('[data-strip]');
   if (strip) {
+    var controls = document.querySelector('[data-strip-controls]');
+    if (controls) controls.hidden = false;
     var down = false, moved = false, sx = 0, sl = 0;
     var scrollable = function () { return strip.scrollWidth > strip.clientWidth + 1; };
     strip.addEventListener('pointerdown', function (e) {
@@ -130,36 +148,33 @@
   /* ---------- Muted demo videos ---------- */
   /* They play on their own only while on screen, and never with reduced motion. */
   var videos = document.querySelectorAll('video[data-autoplay]');
-  if (videos.length && !still && 'IntersectionObserver' in window) {
+  if (videos.length && 'IntersectionObserver' in window) {
+    var visibleVideos = new Set(), userPaused = new Set(), automaticPause = new Set();
+    updateVideos = function () {
+      videos.forEach(function (v) {
+        if (!still && !document.hidden && visibleVideos.has(v)) {
+          if (!userPaused.has(v)) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+        } else if (!v.paused) {
+          automaticPause.add(v);
+          v.pause();
+        }
+      });
+    };
     var vio = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
-        if (e.isIntersecting) { var p = e.target.play(); if (p && p.catch) p.catch(function () {}); }
-        else e.target.pause();
+        if (e.isIntersecting && e.intersectionRatio >= 0.4) visibleVideos.add(e.target);
+        else visibleVideos.delete(e.target);
       });
+      updateVideos();
     }, { threshold: 0.4 });
-    videos.forEach(function (v) { vio.observe(v); });
+    videos.forEach(function (v) {
+      v.addEventListener('pause', function () {
+        if (!automaticPause.delete(v)) userPaused.add(v);
+      });
+      v.addEventListener('play', function () { userPaused.delete(v); });
+      vio.observe(v);
+    });
+    document.addEventListener('visibilitychange', updateVideos);
   }
 
-  // ---------- Page-burn sound toggle (footer) ----------
-  // Shown only where the burn can happen: browsers with page transitions, motion not reduced.
-  var soundBtn = document.querySelector('[data-sound-toggle]');
-  if (soundBtn) {
-    if (!('PageRevealEvent' in window) || still) {
-      soundBtn.remove();
-    } else {
-      var showSound = function () {
-        var on = window.chronicleSoundOn();
-        soundBtn.setAttribute('aria-pressed', String(on));
-        soundBtn.querySelector('.tip').textContent = on ? 'Sound on' : 'Sound off';
-      };
-      soundBtn.hidden = false;
-      showSound();
-      soundBtn.addEventListener('click', function () {
-        var on = !window.chronicleSoundOn();
-        try { localStorage.setItem('chronicle-sound', on ? 'on' : 'off'); } catch (e) {}
-        showSound();
-        if (on) window.chronicleCrackle();
-      });
-    }
-  }
 })();

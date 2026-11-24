@@ -230,6 +230,7 @@ figcaption { font-size: 13px; line-height: 1.4; color: var(--muted); }
 .archcard:hover .archcard-title { color: var(--oxide); }
 .strip-foot { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; }
 .strip-btns { display: flex; gap: 6px; }
+.strip-btns[hidden] { display: none; }
 .archbtn {
   width: 48px; height: 48px; padding: 2px; border: none; border-radius: 50%; background: transparent; color: var(--ink);
   cursor: pointer; display: flex; align-items: center; justify-content: center;
@@ -545,6 +546,9 @@ figcaption { font-size: 13px; line-height: 1.4; color: var(--muted); }
   .colophon-main { flex-direction: column; gap: 14px; padding-top: 24px; padding-bottom: 8px; }
   .colophon-name { font-size: 26px; }
   .colophon-icons { gap: 0 4px; margin-left: -10px; }
+  .colophon-icons > :first-child .tip { left: 0; transform: translate(0, 4px); }
+  .colophon-icons > :first-child .tip::after { left: 20px; }
+  .colophon-icons > :first-child:hover .tip, .colophon-icons > :first-child:focus-visible .tip { transform: none; }
   .colophon-issue { font-size: 11px; padding-bottom: 32px; }
 
   .page-head { padding: 28px 0 24px; gap: 12px; }
@@ -650,7 +654,7 @@ figcaption { font-size: 13px; line-height: 1.4; color: var(--muted); }
 
   /* 1. Page burn (cross-document view transitions; other browsers just navigate).
      A ragged burning line runs down the old page and the new page shows above it.
-     page-burn.html draws a new line for every page change: --burn-front masks the old page
+     page-burn.js draws a new line for every page change: --burn-front masks the old page
      (opaque below the line) and --burn-edge is the glowing, charred line itself, on its own
      layer. Both are 280px tall and move down together. */
   @view-transition { navigation: auto; }

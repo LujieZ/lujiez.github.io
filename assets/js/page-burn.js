@@ -1,18 +1,58 @@
-<script>
 /* Page burn: when a page arrives through a page transition, draws a new burning line for it
    and plays a crackle (made here with Web Audio, no sound file).
    The burn itself is CSS; see "Motion" in chronicle.css. */
 (function () {
-  window.chronicleSoundOn = function () {
-    try { return localStorage.getItem('chronicle-sound') !== 'off'; } catch (e) { return true; }
-  };
-  window.chronicleCrackle = function () {
+  'use strict';
+  var motion = matchMedia('(prefers-reduced-motion: reduce)');
+  var soundOn = true, soundBtn, stopSound = function () {}, transition;
+  try { soundOn = localStorage.getItem('chronicle-sound') !== 'off'; } catch (err) { soundOn = false; }
+
+  function showSound() {
+    if (!soundBtn) return;
+    soundBtn.hidden = motion.matches || !('PageRevealEvent' in window);
+    soundBtn.setAttribute('aria-pressed', String(soundOn));
+    soundBtn.querySelector('.tip').textContent = soundOn ? 'Sound on' : 'Sound off';
+  }
+  document.addEventListener('DOMContentLoaded', function () {
+    soundBtn = document.querySelector('[data-sound-toggle]');
+    if (!soundBtn) return;
+    showSound();
+    soundBtn.addEventListener('click', function () {
+      soundOn = !soundOn;
+      try { localStorage.setItem('chronicle-sound', soundOn ? 'on' : 'off'); } catch (err) {}
+      showSound();
+      if (soundOn) crackle();
+      else stopSound();
+    });
+  });
+  motion.addEventListener('change', function () {
+    if (motion.matches) {
+      stopSound();
+      if (transition) transition.skipTransition();
+    }
+    showSound();
+  });
+  addEventListener('pagehide', function () { stopSound(); });
+
+  function crackle() {
+    if (!soundOn || motion.matches) return;
+    stopSound();
     var AC = window.AudioContext || window.webkitAudioContext;
     if (!AC) return;
-    var ac = new AC(), started = false;
-    setTimeout(function () { if (!started) ac.close(); }, 400); // browser refused sound
-    ac.resume().then(function () {
-      started = true;
+    var ac;
+    try { ac = new AC(); } catch (err) { return; }
+    var stopped = false, timer;
+    function stop() {
+      if (stopped) return;
+      stopped = true;
+      clearTimeout(timer);
+      if (ac.state !== 'closed') ac.close().catch(function () {});
+    }
+    stopSound = stop;
+    timer = setTimeout(stop, 400); // An autoplay-blocked resume can remain pending.
+    Promise.resolve().then(function () { return ac.resume(); }).then(function () {
+      if (stopped) return;
+      clearTimeout(timer);
       var t0 = ac.currentTime + 0.02, sr = ac.sampleRate;
       var buf = ac.createBuffer(1, Math.floor(sr * 2.2), sr), d = buf.getChannelData(0);
       for (var i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
@@ -43,9 +83,9 @@
         c.connect(bp).connect(cg).connect(out);
         c.start(at, Math.random() * 2, len + 0.01);
       }
-      setTimeout(function () { ac.close(); }, 2600);
-    });
-  };
+      timer = setTimeout(stop, 2600);
+    }).catch(stop);
+  }
   // Draws a new burning line: returns the mask (opaque below the line) and the charred, glowing edge
   // as images 280px tall, plus how far the line sits from the top of them.
   function drawBurn(W) {
@@ -93,7 +133,6 @@
     e.shadowBlur = 0; e.strokeStyle = '#ffd678'; e.lineWidth = 1.5; line(e); e.stroke();
     return { mask: mask.toDataURL('image/png'), edge: edge.toDataURL('image/webp', 0.85), minY: minY, maxY: maxY };
   }
-  window.chronicleDrawBurn = drawBurn;
   // Drawing takes ~30ms, so each page draws the next page's burn while the reader is idle and
   // leaves it in sessionStorage; the next page only draws one itself if that's missing or the
   // window has changed width.
@@ -102,11 +141,17 @@
     try { var b = drawBurn(width()); b.w = width(); sessionStorage.setItem(NEXT, JSON.stringify(b)); } catch (err) {}
   };
   addEventListener('load', function () {
-    if (!('PageRevealEvent' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (!('PageRevealEvent' in window) || motion.matches) return;
     (window.requestIdleCallback || setTimeout)(prepare);
   });
   addEventListener('pagereveal', function (e) {
+    // A page restored from the back/forward cache may hold an older preference.
+    try { soundOn = localStorage.getItem('chronicle-sound') !== 'off'; } catch (err) {}
+    showSound();
     if (!e.viewTransition) return;
+    if (motion.matches) { e.viewTransition.skipTransition(); return; }
+    transition = e.viewTransition;
+    transition.finished.then(function () { transition = null; });
     try {
       var b = null;
       try { b = JSON.parse(sessionStorage.getItem(NEXT)); sessionStorage.removeItem(NEXT); } catch (err) {}
@@ -117,7 +162,6 @@
       s.setProperty('--burn-from', -Math.ceil(b.maxY + 70) + 'px');       // scorch out of sight above
       s.setProperty('--burn-to', Math.ceil(innerHeight - b.minY + 16) + 'px'); // glow out of sight below
     } catch (err) {} // the CSS falls back to a straight line
-    if (window.chronicleSoundOn()) window.chronicleCrackle();
+    crackle();
   });
 })();
-</script>

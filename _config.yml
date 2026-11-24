@@ -1,7 +1,19 @@
 # Site settings
-title: _LUJIE_
+title: The Lujie Chronicle
+description: Sue Zhao (赵璐洁), software engineer in Seattle. Identity for AI agents at Google Cloud, and co-founder & CTO of Marbury AI.
+author: Sue Zhao
 email: lujie.sue.zhao@gmail.com
 github_username: LujieZ
+url: https://lujiez.github.io
+lang: en
+calendar_url: https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ1E74cS1dYts65dGf36zcR9zJVsCH4cS3JQwGqGuTL-9v2ApRGVB5h3V4_Ity4FB9N7J52GUiph
+resume_url: /Resume_LujieZ.pdf
+issue: "001"
+issue_date: November 2026
+elsewhere:
+  - { label: GitHub, url: "https://github.com/LujieZ" }
+  - { label: LinkedIn, url: "https://www.linkedin.com/in/lujiez/" }
+  - { label: X, url: "https://x.com/zhaosuesue" }
 exclude:
   - CONTENT.md
   - README.md

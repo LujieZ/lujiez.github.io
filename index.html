@@ -1,169 +1,122 @@
 ---
+layout: default
+folio: Page 1
 ---
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.sound.min.js"></script>
-    <script src="https://unpkg.com/mappa-mundi/dist/mappa.min.js" type="text/javascript"></script>
-    <script src="js/main.js"></script>
-    <title>_LUJIE_</title>
-    <link rel="stylesheet" href="css/main.css"/>
-  	<link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-    <style>
-      /* Newspaper column styling */
-      .newspaper-columns {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 2rem;
-      }
-
-      .newspaper-column {
-        break-inside: avoid;
-        padding-right: 1.5rem;
-        border-right: 1px solid #ccc;
-      }
-
-      .newspaper-column:last-child {
-        border-right: none;
-      }
-
-      @media screen and (min-width: 60em) {
-        .newspaper-columns {
-          grid-template-columns: repeat(3, 1fr);
-        }
-      }
-
-      @media screen and (max-width: 60em) {
-        .newspaper-column {
-          border-right: none;
-          border-bottom: 1px solid #ccc;
-          padding-bottom: 1.5rem;
-          margin-bottom: 1.5rem;
-        }
-        
-        .newspaper-column:last-child {
-          border-bottom: none;
-        }
-      }
-
-      .newspaper-title {
-        font-family: 'Old English Text MT', 'Blackletter', serif;
-      }
-
-      .newspaper-dropcap::first-letter {
-        font-size: 3.5em;
-        font-weight: bold;
-        line-height: 1;
-        float: left;
-        margin-right: 0.1em;
-      }
-    </style>
-  </head>
-  <body class="background-yellow">
-    {% include header.html %}
-    
-    <!-- Main Feature Story -->
-    <div class="ph4 baskerville mw8 center mt2">
-      <div class="dt-ns dt--fixed-ns">
-        <div class="dtc-ns pr3-ns v-top">
-          <img src="images/headshot.jpg" alt="Sue Zhao" class="w-100 mb2" style="border: 1px solid black;" />
-        </div>
-        <div class="dtc-ns pl3-ns v-top">
-          <p class="lh-copy f5 mt0 newspaper-dropcap">
-            <span class="f-headline fw9 fl mr2 lh-solid" style="font-size: 4em; margin-top: -0.1em;">A</span>
-            craftsman, programmer, and dreamer. Sue Zhao (赵璐洁) has been making significant contributions to the technology landscape from her base in Seattle. Having journeyed from China to the United States for high school at age of 16, Zhao has since established herself as a rising talent in the software engineering field.
-          <h4 class="fw7 ttu tracked mt0 mb2">Timeline</h4>
-          <p class="lh-copy f5 mt0">
-          <b>2015:</b> Arrived in US at age 16 <br/>
-          <b>2018:</b> Entered NYU as a first-generation college student major in CS <br/>
-          <b>2020:</b> Google STEP Internship <br/>
-          <b>2021:</b> Google SWE Intern & Graduated NYU <br/>
-          <b>2022-Present:</b> Google Cloud Security <br/>
-          <b>2023-2024:</b> Lead SWE at Saturday, Inc <br/>
-          <b>2024-Present:</b> Co-founder and CPO at Marbury AI
-
-          </p>
-          </p>
-        </div>
-      </div>
+<div class="wrap">
+  <section class="cover" aria-labelledby="cover">
+    <div class="cover-text">
+      <p class="kicker">Cover story</p>
+      <h1 id="cover">Building things that should exist.</h1>
+      <p class="dek">I'm Sue. I work on identity for AI agents and workloads at Google Cloud, and I'm building Marbury AI, an eDiscovery platform for legal teams.</p>
+      <p class="cover-jumps">
+        <a class="inklink" href="#google">At Google Cloud ↓</a>
+        <a class="inklink" href="#marbury">At Marbury AI ↓</a>
+      </p>
     </div>
-  
-  <!-- Multi-column news section -->
-  <div class="ph4 baskerville mw8 center mt2 bt b--black pt4">
-    <div class="newspaper-columns">
-      <div class="newspaper-column">
-        <h3 class="f3 fw7 lh-title mt0 mb2 bb pb2 b--black-20">THE GOOGLE YEARS</h3>
-        <h4 class="f5 fw7 lh-title mt0 mb2">Building Security at Scale</h4>
-        <p class="f6 lh-copy measure-narrow">
-          Today, Zhao works at the forefront of cloud security at Google, contributing to systems that protect some of the world's most critical infrastructure. Her role in the Cloud Security division places her at the intersection of cutting-edge security research and practical, scalable solutions.
-        </p>
-        <p class="f6 lh-copy measure-narrow">
-          But her relationship with Google began years earlier. In Summer 2020, while still a student, she earned a spot in Google's highly competitive 
-          <a href="https://buildyourfuture.withgoogle.com/programs/step/" class="b no-underline hover-bg-gold black-80">
-            STEP (Student Training in Engineering Program)
-          </a>
-          —a program designed to identify and nurture early-career talent from diverse backgrounds.
-        </p>
-        <p class="f6 lh-copy measure-narrow">
-          Working under the Google Cloud Core Infrastructure team, Zhao developed sophisticated data visualization tools for configuration pushes—systems that help engineers monitor and manage deployments across Google's massive cloud infrastructure. The work required not just technical prowess, but the ability to translate complex data into actionable insights.
-        </p>
-        <p class="f6 lh-copy measure-narrow">
-          Her performance impressed leadership enough to earn a return offer. The following summer, she joined the Google Cloud Identity team as a full Software Engineer Intern, where she implemented public APIs for Google Cloud's Identity and Access Management (IAM) service—critical components that millions of developers rely on to secure their applications.
-        </p>
+    <figure class="cover-photo">
+      <div class="portrait">
+        <img src="{{ '/assets/img/headshot.jpg' | relative_url }}" alt="Portrait of Sue Zhao" width="900" height="675" fetchpriority="high">
+        <div class="stamp" aria-hidden="true">{% include ink/stamp-ring.svg %}<span>EST.<br>1999<br>SEATTLE</span></div>
       </div>
-      
-      <div class="newspaper-column">
-        <h3 class="f3 fw7 lh-title mt0 mb2 bb pb2 b--black-20">THE NYU CHAPTER</h3>
-        <h4 class="f5 fw7 lh-title mt0 mb2">Triple Focus, Singular Vision</h4>
-        <p class="f6 lh-copy measure-narrow">
-          Zhao's academic journey at New York University showcased her interdisciplinary approach to problem-solving. Graduating in December 2021 with a B.S. in Computer Science, she didn't stop there—she pursued double minors in Mathematics and Finance, recognizing that the most innovative solutions often emerge at the intersection of multiple fields.
-        </p>
-        <p class="f6 lh-copy measure-narrow">
-          Her most ambitious project during her NYU years was the complete rebuilding of the 
-          <a href="https://eg.poly.edu/" class="b no-underline hover-bg-gold black-80">
-            course website
-          </a>
-          for the Introduction to Engineering course. What started as a simple update evolved into a ground-up reconstruction of the entire platform.
-        </p>
-        <p class="f6 lh-copy measure-narrow">
-          The challenge was substantial: the course served over 1,000 students daily, and the system needed to be reliable, scalable, and intuitive. Zhao architected a solution that not only met these requirements but became a model for other course platforms at the university.
-        </p>
-        <p class="f6 lh-copy measure-narrow">
-          "It taught me that engineering isn't just about writing code—it's about understanding your users, anticipating their needs, and building systems that just work," she notes.
-        </p>
+      <figcaption>Sue Zhao (赵璐洁), editor. Seattle.</figcaption>
+    </figure>
+  </section>
+
+  <div class="fleuron" aria-hidden="true">{% include ink/fleuron.svg %}</div>
+  <section class="leads reveal" id="leads" aria-label="Lead stories">
+    <article class="lead lead--google" id="google">
+      {% include ink/cloudkey.svg %}
+      <p class="kicker">At Google Cloud</p>
+      <h2>Identity for agents</h2>
+      <p class="dek">I've been at Google since 2022, on Cloud Security. Most of my work is about how software proves who it is.</p>
+      <p class="body-copy">Lately that software is AI agents. I work on letting agents use the tools they need without ever holding the keys themselves, and on making a stolen credential useless to whoever took it. I also built the part of Google Cloud where Gemini suggests what access people should have.</p>
+      <a class="inklink mlink" href="{{ '/work/service-account-keys/' | relative_url }}">{% include ink/manicule.svg %}Earlier at Google: service account keys</a>
+    </article>
+    <article class="lead lead--marbury" id="marbury">
+      {% include ink/scales.svg %}
+      <p class="kicker">At Marbury AI</p>
+      <h2>An eDiscovery platform, from the first commit</h2>
+      <p class="dek">I co-founded Marbury in 2024 and I'm the CTO. We help legal teams process and review documents for litigation without giving up control of the process.</p>
+      <p class="body-copy">I built the platform from the start. It reads in a case's documents, lets lawyers search them by exact words or by meaning, and has an AI reviewer that writes down the reason for every call it makes.</p>
+      <p class="lead-links">
+        <a class="inklink mlink" href="#deep-read">{% include ink/manicule.svg %}Read the story</a>
+        <a class="inklink" href="https://www.marbury.ai/">marbury.ai ↗</a>
+      </p>
+    </article>
+  </section>
+</div>
+
+<section class="band" id="deep-read" aria-labelledby="deep-read-h">
+  <div class="wrap band-inner reveal">
+    <div class="band-top">
+      <div class="band-head">
+        <p class="kicker">The Deep Read · Marbury AI</p>
+        <h2 id="deep-read-h">A review agent you can audit</h2>
       </div>
-      
-      <div class="newspaper-column">
-        <h3 class="f3 fw7 lh-title mt0 mb2 bb pb2 b--black-20">BEYOND THE CODE</h3>
-        <h4 class="f5 fw7 lh-title mt0 mb2">A Craftsman's Philosophy</h4>
-        <p class="f6 lh-copy measure-narrow">
-          Zhao describes herself as a "craftsman, programmer, and dreamer"—three identities that inform her approach to software engineering. The craftsman values precision and quality. The programmer solves complex technical challenges. The dreamer envisions what's possible beyond current constraints.
-        </p>
-        <p class="f6 lh-copy measure-narrow">
-          This philosophy extends to her work in cloud security, where she balances the competing demands of robust protection, user experience, and system performance.
-        </p>
-        <p class="f6 lh-copy measure-narrow">
-          Her diverse background—from her cross-cultural journey to her interdisciplinary education—gives her a unique perspective in an industry that increasingly values varied viewpoints. As cloud computing and AI reshape how we build and secure systems, engineers like Zhao, who can bridge technical depth with broad contextual understanding, are becoming invaluable.
-        </p>
-        <h4 class="f5 fw7 lh-title mt3 mb2">What's Next</h4>
-        <p class="f6 lh-copy measure-narrow">
-          With several years at Google under her belt and a track record of delivering high-impact projects, Zhao continues to push boundaries in cloud security and infrastructure. Her journey from a sixteen-year-old newcomer to a respected engineer at one of the world's most influential tech companies exemplifies what's possible with determination, continuous learning, and the courage to take that first bold step.
-        </p>
-        <p class="f6 lh-copy measure-narrow">
-          Those interested in learning more about Zhao's technical work can explore her portfolio of 
-          <a href="/projects/projects" class="b no-underline hover-bg-gold black-80">
-            projects
-          </a>, or connect via the 
-          <a href="/contact.html" class="b no-underline hover-bg-gold black-80">
-            contact page
-          </a>.
-        </p>
-      </div>
+      <a class="inklink mlink bandlink band-link" href="{{ '/work/marbury/' | relative_url }}">{% include ink/manicule.svg %}Read the story</a>
     </div>
+    <ol class="steps">
+      <li class="step">
+        <div class="step-fig" aria-hidden="true">{% include ink/ingest.svg %}</div>
+        <p class="step-num">01<span class="wide"> · Ingest</span></p>
+        <p><b class="narrow">Ingest. </b>Documents come in, and the platform pulls out their text and layout.</p>
+      </li>
+      <li class="step">
+        <div class="step-fig" aria-hidden="true">{% include ink/search.svg %}</div>
+        <p class="step-num">02<span class="wide"> · Search</span></p>
+        <p><b class="narrow">Search. </b>Lawyers can search by exact words and by meaning at the same time.</p>
+      </li>
+      <li class="step">
+        <div class="step-fig" aria-hidden="true">{% include ink/review.svg %}</div>
+        <p class="step-num">03<span class="wide"> · Review</span></p>
+        <p><b class="narrow">Review. </b>The agent tags and flags documents and records why, so a lawyer can check every call.</p>
+      </li>
+    </ol>
+    <p class="band-note">Diagram is illustrative.</p>
   </div>
-	{% include footer.html %}
-  </body>
-</html>
+</section>
+
+<div class="wrap">
+  <section class="strip reveal" aria-labelledby="archive-h">
+    <div class="strip-head">
+      <h2 id="archive-h">From the archive, 2015 to now</h2>
+      <p class="strip-sub">Robots, a course website, and my first Google projects.<span class="wide"> Drag or scroll →</span></p>
+    </div>
+    <div class="strip-scroller" role="region" aria-label="Archive entries. Drag, scroll, or use the arrow keys." tabindex="0" data-strip>
+      <ul class="strip-list">
+        {%- for item in site.data.archive %}{% if item.strip %}
+        <li class="archcard">
+          <a href="{{ '/archive/' | relative_url }}">
+            <span class="archcard-icon" aria-hidden="true">{% include ink/icon-{{ item.icon }}.svg %}</span>
+            <span class="archcard-year">{{ item.year | slice: 0, 4 }}</span>
+            <span class="meta">{{ item.kind }}</span>
+            <span class="archcard-title">{{ item.title }}</span>
+            <span class="archcard-line">{{ item.line }}</span>
+          </a>
+        </li>
+        {%- endif %}{% endfor %}
+      </ul>
+    </div>
+    <div class="strip-foot">
+      <a class="inklink mlink" href="{{ '/archive/' | relative_url }}">{% include ink/manicule.svg %}Open the full archive</a>
+      <div class="strip-btns">
+        <button type="button" class="archbtn" aria-label="Scroll the archive left" data-strip-prev>{% include ink/arrow-left.svg %}</button>
+        <button type="button" class="archbtn" aria-label="Scroll the archive right" data-strip-next>{% include ink/arrow-right.svg %}</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="fleuron" aria-hidden="true">{% include ink/fleuron.svg %}</div>
+  <section class="outside reveal" aria-labelledby="outside-h">
+    <div class="outside-head">
+      {% include ink/brushbell.svg %}
+      <p class="kicker">Outside the office</p>
+      <h2 id="outside-h">A little more about me</h2>
+    </div>
+    <div class="outside-body">
+      <p class="body-copy"><span class="dropcap" aria-hidden="true">I</span><span class="sr-only">I</span> moved from China to the U.S. for high school when I was sixteen, then went to NYU as the first in my family to go to college. Outside work I paint and work out.</p>
+      <p class="body-copy">At Google I've mentored engineers, helped an intern convert to full-time, and organized a 500-person event as a Women@ ambassador.</p>
+      <a class="inklink mlink" href="{{ '/about/' | relative_url }}">{% include ink/manicule.svg %}More about me</a>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,100 @@
+# Everything on file, newest first.
+# group: Work | Projects | Milestones  (the Archive page filters on it)
+# strip: true puts the entry on the front page's archive strip.
+# icon: names a file in _includes/ink/icon-*.svg
+- year: "2024–"
+  kind: Company
+  group: Work
+  title: Marbury AI
+  line: Co-founder & CTO. Built the platform from the first commit.
+  icon: flag
+  strip: true
+  links:
+    - { label: "Case study →", url: /work/marbury/ }
+    - { label: "marbury.ai ↗", url: "https://www.marbury.ai/" }
+- year: "2023–24"
+  kind: Role
+  group: Work
+  title: Saturday Inc
+  line: Lead engineer (part-time). Coach portal for orders, seating, and payments.
+  icon: bag
+  strip: true
+- year: "2022–"
+  kind: Role
+  group: Work
+  title: Google Cloud Security
+  line: Identity and access for AI agents and the software that runs on Google Cloud.
+  icon: bag
+  strip: true
+- year: "2021"
+  kind: Feature
+  group: Work
+  title: Disable/enable service account keys
+  line: Internship project. Launched to every Google Cloud customer.
+  icon: key
+  strip: true
+  links:
+    - { label: "Case study →", url: /work/service-account-keys/ }
+    - { label: "Google Cloud docs ↗", url: "https://cloud.google.com/iam/docs/keys-disable-enable" }
+- year: "2020–21"
+  kind: Web
+  group: Projects
+  title: NYU course website
+  line: Led the rebuild of the Intro to Engineering site, 1,000+ daily users.
+  icon: globe
+  strip: true
+  links:
+    - { label: "eg.poly.edu ↗", url: "https://eg.poly.edu/" }
+- year: "2020–21"
+  kind: Project
+  group: Projects
+  title: Grickly
+  line: NYU senior design project.
+  icon: gear
+- year: "2020"
+  kind: Internship
+  group: Work
+  title: Config push timelines
+  line: STEP internship. A timeline of configuration changes, used by 2,000+ people a day.
+  icon: clock
+  strip: true
+  links:
+    - { label: "Project page →", url: /projects/barchart }
+- year: "2019–20"
+  kind: Library
+  group: Projects
+  title: VEX library
+  line: Code for controlling a VEX competition robot.
+  icon: robot
+  links:
+    - { label: "GitHub ↗", url: "https://github.com/LujieZ" }
+- year: "2019"
+  kind: Research
+  group: Projects
+  title: Mobile robot 3D printing
+  line: AI4CE Lab. Small robots that worked together to print a floor plan.
+  icon: robot
+  strip: true
+  links:
+    - { label: "Project page →", url: /projects/3dprinting }
+- year: "2018"
+  kind: Milestone
+  group: Milestones
+  title: Started at NYU
+  line: Computer Science.
+  icon: book
+- year: "2015"
+  kind: Milestone
+  group: Milestones
+  title: Moved to the U.S.
+  line: High school, age sixteen.
+  icon: plane
+  strip: true
+- year: "—"
+  kind: Coursework
+  group: Projects
+  title: Coursework
+  line: Sudoku, BlueV, job-change prediction, two AI puzzles.
+  icon: pencil
+  links:
+    - { label: "GitHub ↗", url: "https://github.com/LujieZ" }

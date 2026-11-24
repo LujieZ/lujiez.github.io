@@ -1,0 +1,30 @@
+<header class="masthead">
+  <canvas class="rain" aria-hidden="true"></canvas>
+  <div class="mast-box">
+    <div class="ribbon ribbon--l" aria-hidden="true"></div>
+    <div class="ribbon ribbon--r" aria-hidden="true"></div>
+    <p class="dateline">
+      <span class="wide">Seattle, Washington · Est. 1999 ·</span><span class="narrow">Seattle · Est. 1999 ·</span>
+      <span class="issue"><span class="wide">Issue</span><span class="narrow">No.</span> {{ site.issue }}{% include ink/issue-circle.svg %}</span><span class="wide"> · {{ site.issue_date }}</span>
+    </p>
+    <p class="wordmark"><a href="{{ '/' | relative_url }}">The Lujie Chronicle</a></p>
+    <div class="tagline">
+      {% include ink/rule-tip.svg %}
+      <div class="typer" data-typer>
+        <span class="typer-ghost" aria-hidden="true">KEEP YOUR HEAD IN THE CLOUD._</span>
+        <span aria-hidden="true"><span data-typed>KEEP YOUR HEAD IN THE CLOUD.</span><span class="caret">_</span></span>
+        <span class="sr-only">Keep your head in the cloud.</span>
+      </div>
+      {% include ink/rule-tip-right.svg %}
+    </div>
+    {% include ink/double-rule.svg %}
+  </div>
+  <nav class="nav" aria-label="Primary">
+    {%- for item in site.data.nav -%}
+      {%- assign current = false -%}
+      {%- if page.url == item.url -%}{%- assign current = true -%}{%- endif -%}
+      {%- if item.match and page.url contains item.match -%}{%- assign current = true -%}{%- endif -%}
+      <a href="{{ item.url | relative_url }}"{% if current %} aria-current="page"{% endif %}>{{ item.title }}{% if current %}{% include ink/nav-underline.svg %}{% endif %}</a>
+    {%- endfor -%}
+  </nav>
+</header>

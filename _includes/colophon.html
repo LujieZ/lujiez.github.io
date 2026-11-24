@@ -1,0 +1,17 @@
+<div class="wrap" aria-hidden="true"><div class="fleuron">{% include ink/fleuron.svg %}</div></div>
+<footer class="colophon">
+  <div class="wrap colophon-main">
+    <div class="colophon-brand">
+      <span class="colophon-name">The Lujie Chronicle</span>
+      <span class="colophon-line">Made in Seattle. Corrections and hellos: <a href="mailto:{{ site.email }}">{{ site.email }}</a></span>
+    </div>
+    <nav aria-label="Elsewhere">
+      <a href="{{ site.calendar_url }}">Book a time</a>
+      <a href="{{ site.resume_url | relative_url }}">Résumé (PDF)</a>
+      {%- for link in site.elsewhere %}
+      <a href="{{ link.url }}">{{ link.label }}</a>
+      {%- endfor %}
+    </nav>
+  </div>
+  <p class="wrap colophon-issue">Issue {{ site.issue }} · {{ site.issue_date }}{% if page.folio %} · {{ page.folio }}{% endif %}</p>
+</footer>

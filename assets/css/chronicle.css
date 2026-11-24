@@ -125,7 +125,7 @@ a:focus-visible, button:focus-visible, [tabindex]:focus-visible { outline: 2px s
 .nav a { position: relative; display: inline-block; padding: 8px 16px; text-decoration: none; }
 .nav a:hover { color: var(--ink); }
 /* The hand-drawn oxblood stroke marks the current page, and draws in under the others on hover or focus */
-.nav a svg { left: 10px !important; width: calc(100% - 20px) !important; clip-path: inset(-6px calc(100% + 6px) -6px -6px); transition: clip-path 380ms var(--ease); }
+.nav a svg { left: 10px; width: calc(100% - 20px); clip-path: inset(-6px calc(100% + 6px) -6px -6px); transition: clip-path 380ms var(--ease); }
 .nav a[aria-current="page"] svg, .nav a:hover svg, .nav a:focus-visible svg { clip-path: inset(-6px -6px -6px -6px); }
 
 /* ---------- Shared pieces ---------- */
@@ -380,22 +380,6 @@ figcaption { font-size: 13px; line-height: 1.4; color: var(--muted); }
 .ledger-line { font-size: 17px; line-height: 1.5; color: var(--muted); }
 .ledger-links { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; padding-top: 4px; }
 
-/* ---------- About ---------- */
-.bio { padding: 40px 0 48px; display: flex; flex-wrap: wrap; gap: 40px 64px; }
-.bio-photo { flex: 0 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 10px; }
-.bio-text { flex: 1 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 20px; }
-.bio-text p { max-width: 62ch; }
-.bio-aside { display: flex; align-items: center; gap: 18px; padding-top: 6px; }
-.bio-aside .dek { font-size: 21px; }
-.letters { border-top: 3px double var(--ink); padding: 36px 0 56px; display: flex; flex-wrap: wrap; gap: 32px 64px; }
-.letters-head { flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 12px; }
-.letters-head h2 { font-family: var(--head); font-weight: 400; font-size: 40px; line-height: 1.05; }
-.letters-sub { font-size: calc(18px * var(--body-scale)); color: var(--muted); }
-.contact-list { flex: 1 1 560px; min-width: 0; list-style: none; padding: 0; border-bottom: 1px solid var(--ink); }
-.contact-list li { display: flex; align-items: center; gap: 16px; padding: 14px 0; border-top: 1px solid var(--ink); }
-.contact-list li > span:last-child { display: flex; flex-direction: column; gap: 2px; min-width: 0; font-size: 18px; overflow-wrap: anywhere; }
-.contact-list svg { color: var(--ink); }
-
 /* Plain underlined link inside running text or lists */
 .inklink-text { text-decoration: underline; text-decoration-color: currentColor; text-underline-offset: 4px; }
 .inklink-text:hover { color: var(--oxide); text-underline-offset: 6px; }
@@ -483,8 +467,9 @@ figcaption { font-size: 13px; line-height: 1.4; color: var(--muted); }
   .tagline { margin-top: 10px; gap: 8px; }
   .tagline > svg { width: 22px; }
   .typer { font-size: 11px; letter-spacing: 0.06em; }
-  .nav { justify-content: space-between; gap: 0; margin-top: 2px; font-size: 15px; }
-  .nav a { padding: 12px 10px; }
+  .nav { justify-content: space-between; gap: 0; margin-top: 2px; font-size: 14px; }
+  .nav a { padding: 12px 6px; }
+  .nav a svg { left: 2px; width: calc(100% - 4px); }
 
   .kicker { font-size: 11px; }
   .body-copy, .step p { font-size: calc(16px * var(--body-scale)); }
@@ -613,23 +598,8 @@ figcaption { font-size: 13px; line-height: 1.4; color: var(--muted); }
   .ledger-line { font-size: 15px; }
   .ledger-links { flex-direction: row; flex-wrap: wrap; gap: 0 18px; padding-top: 0; }
 
-  .bio { padding: 28px 0 32px; gap: 18px; }
-  .bio-photo, .bio-text { flex-basis: 100%; }
-  .bio-photo .portrait { width: 170px; height: 210px; }
-  .bio-text { gap: 18px; }
-  .bio-aside { flex-direction: column; align-items: flex-start; gap: 10px; }
-  .bio-aside .dek { font-size: 19px; }
-  .letters { padding: 24px 0 36px; gap: 14px; }
-  .letters-head, .contact-list { flex-basis: 100%; }
-  .letters-head h2 { font-size: 32px; }
-  .letters-sub { font-size: calc(17px * var(--body-scale)); }
-  .contact-list li { gap: 14px; padding: 12px 0; }
-  .contact-list li > span:last-child { font-size: 16px; }
   .resume-frame { height: 70vh; min-height: 420px; }
 
-  .nav a { padding: 12px 6px; }
-  .nav a svg { left: 2px !important; width: calc(100% - 4px) !important; }
-  .nav { font-size: 14px; }
   .contact-cards { padding: 24px 0 28px; gap: 24px; }
   .contact-card { flex-basis: 100%; padding: 20px 18px 18px; }
   .contact-card h2 { font-size: 30px; }
@@ -639,7 +609,6 @@ figcaption { font-size: 13px; line-height: 1.4; color: var(--muted); }
 
 /* Very narrow phones: keep the five menu items on one line */
 @media (max-width: 379px) {
-  .nav { font-size: 14px; }
   .nav a { padding: 12px 3px; }
 }
 
@@ -690,7 +659,6 @@ figcaption { font-size: 13px; line-height: 1.4; color: var(--muted); }
   .inklink-text:hover, .inklink-text:focus-visible {
     text-decoration-color: transparent; text-underline-offset: 4px; background-size: 100% 1.5px;
   }
-  .bandlink:not(.mlink) { background-image: linear-gradient(var(--band-acc), var(--band-acc)); }
 
   /* 3. Story cards */
   .feature-art { overflow: hidden; }

@@ -636,29 +636,25 @@ figcaption { font-size: 13px; line-height: 1.4; color: var(--muted); }
 
   /* 1. Page burn (cross-document view transitions; other browsers just navigate).
      A ragged burning line runs down the old page and the new page shows above it.
-     --burn-front masks the old page (opaque below the line); burn-edge.png is the glowing,
-     charred line itself, on its own layer. Both tile across and move down together.
-     The mask is inlined (made by the same script as burn-edge.png) because the old page can't be
-     drawn until its mask has loaded, and a file would make the old page blink out first. */
-  :root { --burn-front: url("data:image/png;base64,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IgAAAwAAYAAAAAwAAIABAAAwAAAABgAAwAAAABgAAAADAABgAAAADAAAgAEAADAAAAAGAADAAAAAGAAAAAMAABgAAAADAABgAAAADAAAgAEAADAAAAAGAADAAAAAGAAAAAMAAGAAAAAMAACAAQAAMAAAAAYAAMAAAAAYAADAAAAAGAAAAAMAAGAAAAAMAACAAQAAMAAAAAYAAMAAAAAYAAAAAwAAYAAAAAwAAIABAAAwAAAABgAAwAAAAAYAAMAAAAAYAAAAAwAAYAAAAAwAAIABAAAwAAAABgAAwAAAABgAAAADAABgAAAADAAAgAEAADAAAAAGAAAwAAAABgAAwAAAABgAAAADAABgAAAADAAAgAEAADAAAAAGAADAAAAAGAAAAAMAAGAAAAAMAACAAQAAMAAAAC4CADAAAAAGAADAAAAAGAAAAAMAAGAAAAAMAACAAQAAMAAAAAYAAMAAAAAYAAAAAwAAYAAAAAwAAIABAAAwAACAAQAAMAAAAAYAAMAAAAAYAAAAAwAAYAAAAAwAAIABAAAwAAAABgAAwAAAABgAAAADAABgAAAADAAAgAEAAAwAAIABAAAwAAAABgAAwAAAABgAAAADAABgAAAADAAAgAEAADAAAAAGAACgGv4O3phXYoTxlJ8AAAAASUVORK5CYII="); }
+     page-burn.html draws a new line for every page change: --burn-front masks the old page
+     (opaque below the line) and --burn-edge is the glowing, charred line itself, on its own
+     layer. Both are 280px tall and move down together. */
   @view-transition { navigation: auto; }
   ::view-transition-old(root), ::view-transition-group(burn-edge) {
-    animation: burn 1s cubic-bezier(0.45, 0.05, 0.6, 0.95) both;
+    animation: burn 1.9s cubic-bezier(0.3, 0.1, 0.65, 0.95) both;
   }
   ::view-transition-old(root) {
     z-index: 1; mix-blend-mode: normal;
     -webkit-mask:
-      var(--burn-front) var(--burn-shift, 0px) var(--burn-y) / 1024px 240px repeat-x,
-      linear-gradient(#000 0 0) 0 calc(var(--burn-y) + 239px) / 100% 200vh no-repeat;
+      var(--burn-front, linear-gradient(transparent 70px, #000 70px)) 0 var(--burn-y) / 100% 280px no-repeat,
+      linear-gradient(#000 0 0) 0 calc(var(--burn-y) + 279px) / 100% 200vh no-repeat;
     mask:
-      var(--burn-front) var(--burn-shift, 0px) var(--burn-y) / 1024px 240px repeat-x,
-      linear-gradient(#000 0 0) 0 calc(var(--burn-y) + 239px) / 100% 200vh no-repeat;
+      var(--burn-front, linear-gradient(transparent 70px, #000 70px)) 0 var(--burn-y) / 100% 280px no-repeat,
+      linear-gradient(#000 0 0) 0 calc(var(--burn-y) + 279px) / 100% 200vh no-repeat;
   }
   ::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
   .burn-edge { position: fixed; inset: 0; pointer-events: none; view-transition-name: burn-edge; }
-  ::view-transition-group(burn-edge) {
-    background: url(../img/burn-edge.png) var(--burn-shift, 0px) var(--burn-y) / 1024px 240px repeat-x;
-  }
+  ::view-transition-group(burn-edge) { background: var(--burn-edge, none) 0 var(--burn-y) / 100% 280px no-repeat; }
   ::view-transition-old(burn-edge), ::view-transition-new(burn-edge) { display: none; }
   /* the paper grain stays on top of everything, as on the page itself */
   .grain { view-transition-name: grain; }
@@ -696,7 +692,7 @@ figcaption { font-size: 13px; line-height: 1.4; color: var(--muted); }
 @keyframes inkrise { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
 @property --burn-y { syntax: "<length>"; inherits: false; initial-value: 0px; }
 /* the line starts just above the top (scorch and all) and leaves just below the bottom */
-@keyframes burn { from { --burn-y: -165px; } to { --burn-y: calc(100vh - 30px); } }
+@keyframes burn { from { --burn-y: var(--burn-from, -230px); } to { --burn-y: var(--burn-to, 100vh); } }
 @media (prefers-reduced-motion: reduce) {
   .caret { animation: none; }
   a, .mlink svg, .archcard, .archcard svg, .archbtn svg, .stamp, .nav a, .smallcard, .smallcard svg, .nextcard-art svg, .chip, .ledger-row, .ledger-row svg, .colophon-icons svg, .tip, .nav a svg { transition: none; }

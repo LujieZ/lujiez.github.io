@@ -1,0 +1,167 @@
+/* Page burn: when a page arrives through a page transition, draws a new burning line for it
+   and plays a crackle (made here with Web Audio, no sound file).
+   The burn itself is CSS; see "Motion" in chronicle.css. */
+(function () {
+  'use strict';
+  var motion = matchMedia('(prefers-reduced-motion: reduce)');
+  var soundOn = true, soundBtn, stopSound = function () {}, transition;
+  try { soundOn = localStorage.getItem('chronicle-sound') !== 'off'; } catch (err) { soundOn = false; }
+
+  function showSound() {
+    if (!soundBtn) return;
+    soundBtn.hidden = motion.matches || !('PageRevealEvent' in window);
+    soundBtn.setAttribute('aria-pressed', String(soundOn));
+    soundBtn.querySelector('.tip').textContent = soundOn ? 'Sound on' : 'Sound off';
+  }
+  document.addEventListener('DOMContentLoaded', function () {
+    soundBtn = document.querySelector('[data-sound-toggle]');
+    if (!soundBtn) return;
+    showSound();
+    soundBtn.addEventListener('click', function () {
+      soundOn = !soundOn;
+      try { localStorage.setItem('chronicle-sound', soundOn ? 'on' : 'off'); } catch (err) {}
+      showSound();
+      if (soundOn) crackle();
+      else stopSound();
+    });
+  });
+  motion.addEventListener('change', function () {
+    if (motion.matches) {
+      stopSound();
+      if (transition) transition.skipTransition();
+    }
+    showSound();
+  });
+  addEventListener('pagehide', function () { stopSound(); });
+
+  function crackle() {
+    if (!soundOn || motion.matches) return;
+    stopSound();
+    var AC = window.AudioContext || window.webkitAudioContext;
+    if (!AC) return;
+    var ac;
+    try { ac = new AC(); } catch (err) { return; }
+    var stopped = false, timer;
+    function stop() {
+      if (stopped) return;
+      stopped = true;
+      clearTimeout(timer);
+      if (ac.state !== 'closed') ac.close().catch(function () {});
+    }
+    stopSound = stop;
+    timer = setTimeout(stop, 400); // An autoplay-blocked resume can remain pending.
+    Promise.resolve().then(function () { return ac.resume(); }).then(function () {
+      if (stopped) return;
+      clearTimeout(timer);
+      var t0 = ac.currentTime + 0.02, sr = ac.sampleRate;
+      var buf = ac.createBuffer(1, Math.floor(sr * 2.2), sr), d = buf.getChannelData(0);
+      for (var i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
+      var out = ac.createGain();
+      out.gain.value = 0.3;
+      out.connect(ac.destination);
+      // the flame catching: low noise that swells and dies away
+      var n = ac.createBufferSource(), lp = ac.createBiquadFilter(), g = ac.createGain();
+      n.buffer = buf; lp.type = 'lowpass';
+      lp.frequency.setValueAtTime(250, t0);
+      lp.frequency.exponentialRampToValueAtTime(1500, t0 + 0.7);
+      lp.frequency.exponentialRampToValueAtTime(450, t0 + 2);
+      g.gain.setValueAtTime(0.0001, t0);
+      g.gain.exponentialRampToValueAtTime(0.6, t0 + 0.3);
+      g.gain.setValueAtTime(0.6, t0 + 1.3);
+      g.gain.exponentialRampToValueAtTime(0.0001, t0 + 2.05);
+      n.connect(lp).connect(g).connect(out);
+      n.start(t0); n.stop(t0 + 2.1);
+      // crackles: short bright pops, thickening as the fire spreads
+      for (var k = 0; k < 60; k++) {
+        var at = t0 + Math.pow(Math.random(), 0.8) * 1.8, len = 0.004 + Math.random() * 0.018;
+        var c = ac.createBufferSource(), bp = ac.createBiquadFilter(), cg = ac.createGain();
+        c.buffer = buf; bp.type = 'bandpass';
+        bp.frequency.value = 1200 + Math.random() * 4200;
+        bp.Q.value = 0.8 + Math.random() * 2;
+        cg.gain.setValueAtTime(0.2 + Math.random() * 0.8, at);
+        cg.gain.exponentialRampToValueAtTime(0.0001, at + len);
+        c.connect(bp).connect(cg).connect(out);
+        c.start(at, Math.random() * 2, len + 0.01);
+      }
+      timer = setTimeout(stop, 2600);
+    }).catch(stop);
+  }
+  // Draws a new burning line: returns the mask (opaque below the line) and the charred, glowing edge
+  // as images 280px tall, plus how far the line sits from the top of them.
+  function drawBurn(W) {
+    var H = 280, F = 70, pts = [], minY = H, maxY = 0;
+    var octaves = [[260, 22], [90, 10], [30, 5], [9, 2.2]]; // wavelength, height in px
+    var noise = octaves.map(function (o) {
+      var t = [];
+      for (var i = 0; i < W / o[0] + 3; i++) t.push(Math.random() * 2 - 1);
+      return t;
+    });
+    var tongues = []; // a few places where the fire runs ahead
+    for (var j = 0, n = 2 + Math.floor(Math.random() * 3); j < n; j++) {
+      tongues.push([Math.random() * W, 40 + Math.random() * 120, 12 + Math.random() * 30]);
+    }
+    for (var x = 0; x <= W + 3; x += 3) {
+      var y = F;
+      for (var k = 0; k < octaves.length; k++) {
+        var u = x / octaves[k][0], i0 = Math.floor(u), f = u - i0, t = noise[k];
+        f = f * f * (3 - 2 * f);
+        y += octaves[k][1] * (t[i0] + (t[i0 + 1] - t[i0]) * f);
+      }
+      for (j = 0; j < tongues.length; j++) {
+        var dx = (x - tongues[j][0]) / tongues[j][1];
+        y += tongues[j][2] * Math.exp(-dx * dx * 4);
+      }
+      pts.push([x, y]);
+      minY = Math.min(minY, y); maxY = Math.max(maxY, y);
+    }
+    var canvas = function (r) { var c = document.createElement('canvas'); c.width = Math.ceil(W * r); c.height = H * r; return c; };
+    var line = function (c, close) {
+      c.beginPath(); c.moveTo(pts[0][0], pts[0][1]);
+      for (var i = 1; i < pts.length; i++) c.lineTo(pts[i][0], pts[i][1]);
+      if (close) { c.lineTo(W + 4, H); c.lineTo(0, H); c.closePath(); }
+    };
+    var mask = canvas(1), m = mask.getContext('2d');
+    line(m, true); m.fill();
+    var edge = canvas(0.5), e = edge.getContext('2d'); // half size: it's soft anyway, and twice as quick
+    e.scale(0.5, 0.5); e.lineJoin = 'round';
+    e.save(); line(e, true); e.clip(); // scorch and char only on the paper that's left
+    e.filter = 'blur(8px)'; e.strokeStyle = 'rgba(92, 52, 22, 0.55)'; e.lineWidth = 90; line(e); e.stroke();
+    e.filter = 'blur(1.5px)'; e.strokeStyle = '#180e08'; e.lineWidth = 16; line(e); e.stroke();
+    e.restore();
+    e.filter = 'none'; e.shadowColor = 'rgba(255, 120, 30, 0.9)'; e.shadowBlur = 5;
+    e.strokeStyle = '#e25c18'; e.lineWidth = 4; line(e); e.stroke();
+    e.shadowBlur = 0; e.strokeStyle = '#ffd678'; e.lineWidth = 1.5; line(e); e.stroke();
+    return { mask: mask.toDataURL('image/png'), edge: edge.toDataURL('image/webp', 0.85), minY: minY, maxY: maxY };
+  }
+  // Drawing takes ~30ms, so each page draws the next page's burn while the reader is idle and
+  // leaves it in sessionStorage; the next page only draws one itself if that's missing or the
+  // window has changed width.
+  var NEXT = 'chronicle-next-burn', width = function () { return Math.min(innerWidth, 2560); };
+  var prepare = function () {
+    try { var b = drawBurn(width()); b.w = width(); sessionStorage.setItem(NEXT, JSON.stringify(b)); } catch (err) {}
+  };
+  addEventListener('load', function () {
+    if (!('PageRevealEvent' in window) || motion.matches) return;
+    (window.requestIdleCallback || setTimeout)(prepare);
+  });
+  addEventListener('pagereveal', function (e) {
+    // A page restored from the back/forward cache may hold an older preference.
+    try { soundOn = localStorage.getItem('chronicle-sound') !== 'off'; } catch (err) {}
+    showSound();
+    if (!e.viewTransition) return;
+    if (motion.matches) { e.viewTransition.skipTransition(); return; }
+    transition = e.viewTransition;
+    transition.finished.then(function () { transition = null; });
+    try {
+      var b = null;
+      try { b = JSON.parse(sessionStorage.getItem(NEXT)); sessionStorage.removeItem(NEXT); } catch (err) {}
+      if (!b || b.w !== width()) b = drawBurn(width());
+      var s = document.documentElement.style;
+      s.setProperty('--burn-front', 'url(' + b.mask + ')');
+      s.setProperty('--burn-edge', 'url(' + b.edge + ')');
+      s.setProperty('--burn-from', -Math.ceil(b.maxY + 70) + 'px');       // scorch out of sight above
+      s.setProperty('--burn-to', Math.ceil(innerHeight - b.minY + 16) + 'px'); // glow out of sight below
+    } catch (err) {} // the CSS falls back to a straight line
+    crackle();
+  });
+})();

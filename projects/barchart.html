@@ -1,90 +1,30 @@
 ---
+layout: feature
+title: Config push timelines
+description: My 2020 STEP internship at Google, an interactive chart of how long configuration changes take to roll out.
+folio: Page 3
+kicker: From the archive · Google
+meta: Summer 2020 · STEP internship
+dek: A chart that shows how long each configuration change took to roll out, and whether today's is running long.
+read: 1 min read
+facts:
+  - [When, Summer 2020]
+  - [Where, "Google, as a STEP intern"]
+  - [Used by, "2,000+ people a day"]
+fact_link: { label: "Read the code ↗", url: "https://github.com/googleinterns/step189-2020" }
+next_story:
+  label: More from the archive
+  url: /projects/3dprinting
+  kicker: NYU, 2019
+  title: Mobile robot 3D printing
 ---
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1， shrink-to-fit=no">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.sound.min.js"></script>
-    <script src="https://unpkg.com/mappa-mundi/dist/mappa.min.js" type="text/javascript"></script>
-    <script src="../js/main.js"></script>
-    <title>_LUJIE_</title>
-    <link rel="stylesheet" href="../css/main.css"/>
-  	<link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-  </head>
-  <body class="background-yellow">
-    {% include header.html %}
-
-    <div class="black-80 ph4 dt mw7 center">
-      <h1 class="f2 f2-ns fw3 tc baskerville animate__animated animate__fadeIn">Visualization of Configuration Pushes</h1>
-      <div class="tc">
-        <img src="../images/barchart.gif" class="w-100 f5 measure" alt="poster">
-      </div>
-      <p class="f5 f5-ns baskerville lh-copy center bb b--black-10 pb4">
-        This internship project is about a service internal to Google that is
-        responsible for dynamically pushing pieces of configuration or data to
-        running processes.
-        </br></br>
-        <b>Motivations</b></br></br>
-        The two main questions this project tries to address are:<br>
-        1. how do the start and end of all pushes in a push def line up against
-        each other?<br>
-        2. how does a current push compare against previous pushes?</br></br>
-        <b>Terminology</b></br></br>
-        A <i>push definition</i> (push def) describes a particular push. The most
-        relevant information for this project is that a push def describes how a
-        push is split in several stages. At Google, the push defs are organized
-        in a tree hierarchy but, for simplicity, in this project we only used a
-        flat list of push defs.</br></br>
-        Each push for a particular push def is identified by a <i>push handle</i>.
-        The handle is composed by joining the name for the push def with a push
-        ID.</br></br>
-        For each push there is a <i>push info</i> that describes what happened
-        during a particular push. This includes information about when the push
-        started and when the transition from one stage+state to the next
-        happened.</br></br>
-        A push is split in several <i>stages</i>, with each stage updating only
-        a subset of the consumers. Each stage also has an attempt counter
-        associated with it because a stage can be retried several times. Each
-        stage can go through several states before completing. </br></br>
-        <b>Bar Chart</b></br></br>
-        The bar chart is a visualization element that helps with the second
-        major question: how does a current push compare against previous pushes,
-        when the number of pushes is not very large?</br></br>
-        The bar chart displays the pushes in chronological order, because the
-        pushes happened most recently are probably more important to the user.
-        The y axis of the bar chart is the duration of a single push, with the
-        most common time unit of the pushes. The bar chart consists of a focus
-        bar chart, a compressed bar chart with a selector, and a box plot. The
-        focus bar chart shows a default number of pushes when the user opens the
-        page.</br></br>
-        There are several interactive features integrated in the bar chart. The
-        user can use the <span class="gold">selector</span> to slide among the
-        bars and select any portion to display. The <span class="gold">drop down
-        menu</span> lets the user to switch between all pushes and completed
-        pushes. When the user <span class="gold">hovers</span> on a bar or the
-        empty area above it, the bar will be highlighted and a tooltip with the
-        push's pushID, end state, and start time will appear on top of the bar,
-        as well as a tag with the duration of the push.</br></br>
-        <b>Box Plot</b></br></br>
-        The bar chart also features a box plot that allows the user to compare
-        the current push duration to the previous pushes and helps the user
-        predict the completion time of an ongoing push. The box plot contains
-        <span class="gold">five labels</span> that show the minimum, first
-        quantile(25%), median, third quantile(75%), and maximum duration of the
-        pushes appeared in the focus bar chart.</br></br>
-        When the selector updates the focus bar chart or the
-        selection of the drop down menu changes, the box plot will be updated
-        with the new input data. When user hovers over the bar chart, the
-        corresponding data point in the box plot will be highlighted. The points
-        in the box plot will switch to a smaller radius to show the distribution
-        better when there are too many data points.
-      </p>
-      <a class="baskerville f6 link dim br3 ph3 pv2 mb2 dib white bg-dark-gray mt3" href="https://github.com/googleinterns/step189-2020">
-        Read my code.
-      </a>
-    </div>
-    {% include footer.html %}
-  </body>
-</html>
+<h2>What it is</h2>
+<p><span class="dropcap" aria-hidden="true">I</span><span class="sr-only">I</span>n the summer of 2020 I was a STEP intern at Google. My team ran a service that sends configuration changes out to running software, a few groups at a time.</p>
+<p>Engineers wanted two answers at a glance: did each stage of a rollout start and finish when it should, and is the rollout happening now slower or faster than usual?</p>
+<figure class="story-media">
+  <video src="{{ '/assets/img/barchart.mp4' | relative_url }}" poster="{{ '/assets/img/barchart-poster.jpg' | relative_url }}" width="1036" height="432" muted loop playsinline controls preload="metadata" data-autoplay aria-label="The bar chart in use: sliding along past rollouts, switching to finished ones, and hovering over a bar to see its details."></video>
+  <figcaption>The chart in use. Each bar is one past rollout.</figcaption>
+</figure>
+<h2>What I built</h2>
+<p>I built an interactive bar chart of past rollouts. You can slide along the timeline to choose which rollouts to look at, show only the finished ones, and hover over a bar to see when it started and how it ended.</p>
+<p>A small summary next to the chart shows the usual range, so you can tell at a glance whether the rollout in front of you is taking longer than normal.</p>

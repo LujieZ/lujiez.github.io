@@ -1,0 +1,36 @@
+---
+layout: default
+title: Work
+description: Two case studies in depth, Marbury AI and Google Cloud service account keys, and the smaller projects that came before them.
+folio: Page 2
+---
+<div class="wrap">
+  {% include page-head.html title="Work" dek="Two stories in depth, and the smaller projects that came before them." %}
+
+  <section class="features" aria-label="Case studies">
+    {%- assign stories = site.work | sort: "order" %}
+    {%- for story in stories %}
+    {% include story-card.html story=story %}
+    {%- endfor %}
+  </section>
+
+  <section class="also reveal" aria-labelledby="also-h">
+    <div class="also-head">
+      <h2 id="also-h">Also on file</h2>
+      <a class="inklink mlink" href="{{ '/archive/' | relative_url }}">{% include ink/manicule.svg %}Everything, by year</a>
+    </div>
+    <ul class="also-list">
+      {%- for item in site.data.archive %}{% if item.also %}
+      <li class="smallcard">
+        <span class="smallcard-icon" aria-hidden="true">{% include ink/icon-{{ item.icon }}.svg %}</span>
+        <span class="smallcard-text">
+          <span class="meta">{{ item.dates }} · {{ item.kind }}</span>
+          <span class="smallcard-title">{{ item.title }}</span>
+          <span class="smallcard-line">{{ item.line }}</span>
+          {%- if item.links %}<span class="link-row">{% for l in item.links %}<a class="inklink" href="{{ l.url | relative_url }}">{{ l.label }}</a>{% endfor %}</span>{% endif %}
+        </span>
+      </li>
+      {%- endif %}{% endfor %}
+    </ul>
+  </section>
+</div>

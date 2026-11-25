@@ -1,0 +1,125 @@
+# Everything on file, newest first by start date (months from the résumé and the old Projects page).
+# year: start year, shown large; dates: the full range, shown small.
+# group: Work | Projects | Milestones  (the Archive page filters on it)
+# also: true lists the entry under "Also on file" on the Work page.
+# strip: true puts the entry on the front page's archive strip.
+# icon: names a file in _includes/ink/icon-*.svg
+- year: "2024"
+  dates: "Sep 2024 – present"
+  kind: Company
+  group: Work
+  title: Marbury AI
+  line: Co-founder & CTO. Built the platform from the first commit.
+  icon: flag
+  strip: true
+  links:
+    - { label: "Case study →", url: /work/marbury/ }
+    - { label: "marbury.ai ↗", url: "https://www.marbury.ai/" }
+- year: "2023"
+  dates: "Jul 2023 – Mar 2024"
+  kind: Role
+  group: Work
+  title: Saturday Inc
+  also: true
+  line: Lead engineer (part-time). Coach portal for orders, seating, and payments.
+  icon: bag
+  strip: true
+  links:
+    - { label: "saturday.fit ↗", url: "https://saturday.fit/" }
+- year: "2022"
+  dates: "Feb 2022 – present"
+  kind: Role
+  group: Work
+  title: Google Cloud Security
+  line: Identity and access for AI agents and the software that runs on Google Cloud.
+  icon: bag
+  strip: true
+- year: "2021"
+  dates: "May – Aug 2021"
+  kind: Feature
+  group: Work
+  title: Disable/enable service account keys
+  line: Internship project. Launched to every Google Cloud customer.
+  icon: key
+  strip: true
+  links:
+    - { label: "Case study →", url: /work/service-account-keys/ }
+    - { label: "Google Cloud docs ↗", url: "https://cloud.google.com/iam/docs/keys-disable-enable" }
+- year: "2020"
+  dates: "Oct 2020 – Jan 2022"
+  kind: Web
+  group: Projects
+  title: NYU course website
+  also: true
+  line: Led the rebuild of the Intro to Engineering site, 1,000+ daily users.
+  icon: globe
+  strip: true
+  links:
+    - { label: "eg.poly.edu ↗", url: "https://eg.poly.edu/" }
+- year: "2020"
+  dates: "Sep 2020 – May 2021"
+  kind: Project
+  group: Projects
+  title: Grickly
+  line: NYU senior design project.
+  icon: gear
+- year: "2020"
+  dates: "Jun – Sep 2020"
+  kind: Internship
+  group: Work
+  title: Config push timelines
+  also: true
+  line: STEP internship. A timeline of configuration changes, used by 2,000+ people a day.
+  icon: clock
+  strip: true
+  links:
+    - { label: "Project page →", url: /projects/barchart }
+- year: "2019"
+  dates: "Dec 2019 – Jan 2020"
+  kind: Library
+  group: Projects
+  title: VEX library
+  also: true
+  line: Code for controlling a VEX competition robot.
+  icon: gear
+  links:
+    - { label: "GitHub ↗", url: "https://github.com/tg1625/Vex-Library" }
+- year: "2019"
+  dates: "Jun – Aug 2019"
+  kind: Research
+  group: Projects
+  title: Mobile robot 3D printing
+  also: true
+  line: AI4CE Lab. Small robots that worked together to print a floor plan.
+  icon: robot
+  strip: true
+  links:
+    - { label: "Project page →", url: /projects/3dprinting }
+- year: "2018"
+  dates: "Sep 2018 – Dec 2021"
+  kind: Coursework
+  group: Projects
+  title: Coursework
+  also: true
+  line: Sudoku, BlueV, job-change prediction, two AI puzzles.
+  icon: pencil
+  links:
+    - { label: "Sudoku ↗", url: "https://github.com/LujieZ/cs1114-sudoku" }
+    - { label: "BlueV ↗", url: "https://docs.google.com/presentation/d/1ijQpYIHXFUvPpG1JZRgfgI-wbjIKB8XsHZ3AicccLm8/edit?usp=sharing" }
+    - { label: "Job-change prediction ↗", url: "https://github.com/LujieZ/cs4563-machine-learning" }
+    - { label: "AI puzzles ↗", url: "https://github.com/LujieZ/cs4613-artificial-intelligence" }
+- year: "2018"
+  dates: "Sep 2018"
+  kind: Milestone
+  group: Milestones
+  title: Started at NYU
+  line: Computer Science.
+  icon: book
+- year: "2015"
+  dates: "2015"
+  kind: Milestone
+  group: Milestones
+  title: Moved to the U.S.
+  line: High school, age sixteen.
+  icon: plane
+  strip: true

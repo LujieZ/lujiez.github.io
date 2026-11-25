@@ -1,0 +1,15 @@
+# Primary navigation. `match` marks the section a page belongs to.
+- title: Front Page
+  url: /
+- title: Work
+  url: /work/
+  match: /work/
+- title: Archive
+  url: /archive/
+  match: /archive/
+- title: Résumé
+  url: /cv
+  match: /cv
+- title: Contact
+  url: /contact
+  match: /contact

@@ -1,0 +1,18 @@
+<footer class="colophon">
+  <div class="wrap colophon-rule" aria-hidden="true">{% include ink/hand-rule.svg %}{% include ink/diamond.svg %}{% include ink/hand-rule.svg %}</div>
+  <div class="wrap colophon-main">
+    <div class="colophon-brand">
+      <span class="colophon-name">The Lujie Chronicle</span>
+      <span class="colophon-line">Made in Seattle. Corrections and hellos: <a href="mailto:{{ site.email }}">{{ site.email }}</a></span>
+    </div>
+    <nav class="colophon-icons" aria-label="Elsewhere">
+      <a href="{{ site.calendar_url }}">{% include ink/contact-calendar.svg %}<span class="tip">Book a time</span></a>
+      <a href="{{ site.resume_url | relative_url }}">{% include ink/contact-page.svg %}<span class="tip">Résumé (PDF)</span></a>
+      {%- for link in site.elsewhere %}
+      <a href="{{ link.url }}">{% include ink/{{ link.icon }}.svg %}<span class="tip">{{ link.label }}</span></a>
+      {%- endfor %}
+      <button type="button" class="sound-toggle" aria-label="Page-turn sound" aria-pressed="true" hidden data-sound-toggle>{% include ink/sound.svg %}<span class="tip">Sound on</span></button>
+    </nav>
+  </div>
+  <p class="wrap colophon-issue">Issue {{ site.issue }} · {{ site.issue_date }}{% if page.folio %} · {{ page.folio }}{% endif %}</p>
+</footer>
